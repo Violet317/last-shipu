@@ -1,0 +1,171 @@
+{
+  "pages": [
+    {
+      "path": "pages/home",
+      "style": {
+        "navigationBarTitleText": "美食策展人",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/login",
+      "style": {
+        "navigationBarTitleText": "登录",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/aiCreate",
+      "style": {
+        "navigationBarTitleText": "AI 创作",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/ingredients",
+      "style": {
+        "navigationBarTitleText": "食材库",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/recipeDetail",
+      "style": {
+        "navigationBarTitleText": "食谱详情",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/dailyVitality",
+      "style": {
+        "navigationBarTitleText": "今日活力",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/nutrition",
+      "style": {
+        "navigationBarTitleText": "今日已摄入营养统计",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/forum",
+      "style": {
+        "navigationBarTitleText": "论坛",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/shop",
+      "style": {
+        "navigationBarTitleText": "商城",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/dailyFeatured",
+      "style": {
+        "navigationBarTitleText": "每日精选",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/me",
+      "style": {
+        "navigationBarTitleText": "我的",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/profile",
+      "style": {
+        "navigationBarTitleText": "个人资料",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/coreGoal",
+      "style": {
+        "navigationBarTitleText": "核心目标设置",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/achievement",
+      "style": {
+        "navigationBarTitleText": "个人成就",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/feedback",
+      "style": {
+        "navigationBarTitleText": "反馈",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/settings",
+      "style": {
+        "navigationBarTitleText": "设置",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/archive",
+      "style": {
+        "navigationBarTitleText": "存档",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/recipe",
+      "style": {
+        "navigationBarTitleText": "食谱记录",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/extra",
+      "style": {
+        "navigationBarTitleText": "扩展",
+        "navigationStyle": "custom"
+      }
+    }
+  ],
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+    }
+  },
+  "tabBar": {
+    "color": "#74796e",
+    "selectedColor": "#4caf50",
+    "backgroundColor": "#fff8f4",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home",
+        "text": "🏠 首页"
+      },
+      {
+        "pagePath": "pages/ingredients",
+        "text": "🥬 食材库"
+      },
+      {
+        "pagePath": "pages/aiCreate",
+        "text": "✨ 创作"
+      },
+      {
+        "pagePath": "pages/extra",
+        "text": "🧩 扩展"
+      },
+      {
+        "pagePath": "pages/me",
+        "text": "👤 我的"
+      }
+    ]
+  }
+}

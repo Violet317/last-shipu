@@ -1,0 +1,144 @@
+$palette-green: (
+  color-primary: #4caf50,
+  color-primary-container: #e8f5e9,
+  color-on-primary: #ffffff,
+  color-on-primary-container: #1b5e20,
+  color-secondary: #6d4c41,
+  color-background: #fbfbfb,
+  color-surface: #ffffff,
+  color-surface-container: #f5f7f2,
+  color-on-surface: #1a1c19,
+  color-on-surface-variant: #43493e,
+  color-outline: #73796e,
+  color-outline-variant: #c3c8bc,
+  color-error: #ba1a1a,
+  color-on-error: #ffffff,
+  shadow-rgb: (0, 0, 0)
+);
+
+$palette-ochre: (
+  color-primary: #795520,
+  color-primary-container: #946d36,
+  color-on-primary: #ffffff,
+  color-on-primary-container: #fffbff,
+  color-secondary: #6f5b42,
+  color-background: #fff8f4,
+  color-surface: #fff8f4,
+  color-surface-container: #f6ece5,
+  color-surface-container-low: #fcf2ea,
+  color-surface-container-high: #f0e6df,
+  color-surface-container-lowest: #ffffff,
+  color-appbar-bg: #f8faf3,
+  color-on-surface: #1f1b17,
+  color-on-surface-variant: #4f453a,
+  color-outline: #817568,
+  color-outline-variant: #d3c4b5,
+  color-error: #ba1a1a,
+  color-on-error: #ffffff,
+  shadow-rgb: (0, 0, 0)
+);
+
+$brand: (
+  color-brand: #4caf50,
+  color-brand-container: #e8f5e9,
+  color-on-brand: #ffffff,
+  color-on-brand-container: #1b5e20
+);
+
+$accent: (
+  color-accent: #047857,
+  color-accent-600: #059669,
+  color-accent-400: #34d399,
+  color-accent-100: #d1fae5,
+  color-accent-50: #ecfdf5
+);
+
+$rgb: (
+  rgb-white: (255, 255, 255),
+  rgb-black: (0, 0, 0),
+  rgb-brand: (76, 175, 80),
+  rgb-primary: (121, 85, 32),
+  rgb-primary-container: (148, 109, 54),
+  rgb-accent: (4, 120, 87),
+  rgb-accent-100: (209, 250, 229),
+  rgb-appbar-bg: (248, 250, 243)
+);
+
+$typography: (
+  font-headline: "Plus Jakarta Sans",
+  font-body: "Be Vietnam Pro"
+);
+
+$radii: (
+  radius-sm: 8rpx,
+  radius-md: 16rpx,
+  radius-lg: 24rpx,
+  radius-xl: 32rpx,
+  radius-full: 9999rpx
+);
+
+$font-sizes: (
+  fs-10: 20rpx,
+  fs-12: 24rpx,
+  fs-14: 28rpx,
+  fs-16: 32rpx,
+  fs-18: 36rpx,
+  fs-20: 40rpx,
+  fs-24: 48rpx,
+  fs-32: 64rpx,
+  fs-36: 72rpx,
+  fs-40: 80rpx
+);
+
+$spacing: (
+  sp-4: 8rpx,
+  sp-6: 12rpx,
+  sp-8: 16rpx,
+  sp-10: 20rpx,
+  sp-12: 24rpx,
+  sp-14: 28rpx,
+  sp-16: 32rpx,
+  sp-20: 40rpx,
+  sp-24: 48rpx,
+  sp-32: 64rpx,
+  sp-40: 80rpx,
+  sp-48: 96rpx,
+  sp-56: 112rpx,
+  sp-64: 128rpx
+);
+
+$z: (
+  z-header: 1000,
+  z-overlay: 2000,
+  z-modal: 3000
+);
+
+$shadow: (
+  shadow-alpha-editorial: 0.04
+);
+
+@mixin emit-vars($map) {
+  @each $name, $value in $map {
+    --#{$name}: #{$value};
+  }
+}
+
+:root {
+  @include emit-vars($typography);
+  @include emit-vars($radii);
+  @include emit-vars($font-sizes);
+  @include emit-vars($spacing);
+  @include emit-vars($z);
+  @include emit-vars($shadow);
+  @include emit-vars($brand);
+  @include emit-vars($accent);
+  @include emit-vars($rgb);
+}
+
+.theme-green {
+  @include emit-vars($palette-green);
+}
+
+.theme-ochre {
+  @include emit-vars($palette-ochre);
+}

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>社区论坛 - 烹饪工坊</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"outline-variant": "#d3c4b5", primary: "#795520", "on-primary-container": "#fffbff", tertiary: "#586029", "surface-variant": "#eae1d9", "on-secondary": "#ffffff", "on-background": "#1f1b17", "on-secondary-container": "#735f46", outline: "#817568", "on-secondary-fixed": "#261905", "error-container": "#ffdad6", "surface-container-high": "#f0e6df", "primary-fixed-dim": "#eebe7f", "primary-fixed": "#ffddb3", "inverse-on-surface": "#f9efe7", "tertiary-fixed-dim": "#c3cc89", "surface-tint": "#7b5822", "surface-container-low": "#fcf2ea", secondary: "#6f5b42", "inverse-surface": "#34302b", "surface-container-lowest": "#ffffff", "secondary-fixed": "#f9debe", "inverse-primary": "#eebe7f", background: "#fff8f4", "tertiary-container": "#71793f", surface: "#fff8f4", "surface-bright": "#fff8f4", "on-primary-fixed-variant": "#60400b", "secondary-container": "#f6dcbb", "on-tertiary": "#ffffff", "surface-container-highest": "#eae1d9", error: "#ba1a1a", "on-tertiary-fixed-variant": "#434b16", "on-surface": "#1f1b17", "on-tertiary-container": "#fdffdf", "secondary-fixed-dim": "#dcc3a3", "on-primary": "#ffffff", "primary-container": "#946d36", "on-error-container": "#93000a", "on-error": "#ffffff", "on-tertiary-fixed": "#191e00", "on-surface-variant": "#4f453a", "on-secondary-fixed-variant": "#55442c", "surface-dim": "#e2d8d1", "on-primary-fixed": "#291800", "tertiary-fixed": "#dfe8a3", "surface-container": "#f6ece5"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, fontFamily: {headline: ["Plus Jakarta Sans"], body: ["Be Vietnam Pro"], label: ["Be Vietnam Pro"], display: "Plus Jakarta Sans"}}}};</script>
+<style>
+        body { font-family: 'Be Vietnam Pro', sans-serif; background-color: #f8faf3; color: #191c18; }
+        h1, h2, h3, .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased pb-24 md:pb-0 md:pt-20">
+<!-- TopAppBar (Web) -->
+<header class="hidden md:flex fixed top-0 w-full z-50 bg-[#f8faf3]/70 dark:bg-[#191c18]/70 backdrop-blur-xl justify-between items-center px-6 py-4 shadow-none">
+<div class="flex items-center gap-4">
+<button class="text-[#006e1c] dark:text-[#4caf50] hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden shrink-0">
+<img alt="User profile portrait" class="w-full h-full object-cover" data-alt="close-up portrait of a smiling young woman in natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRFRwPmzeXj5vIcWdQET52jV9y81dSU5oWXvvR3AFNqCWOkPpoDowQzQ_VBl9ILK2qZhxqv1okFbrbSFjonPctfeq-Z6PJBrHmoGKLZkH_4dh4eESkPF2jN8Te6MZthZca1h1Y86fKuuAhA4cTqdGZiUhOyM4kVrXT83lqWXMyd_7JfbcR8JiYVmB5Kr0P0YlRit7svYpB70JlqAEu-mN3Qk91P_0nar7x0gDVyRR7iIt56hdMaWS4RbuMTP5PT0GlyeuJQMLHs_E8"/>
+</div>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold tracking-tight text-xl text-[#006e1c] dark:text-[#4caf50]">烹饪工坊</h1>
+</div>
+<nav class="flex gap-8">
+<a class="text-[#444941] dark:text-[#c4c8bb] hover:opacity-80 transition-opacity font-medium" href="#">工作室</a>
+<a class="text-[#006e1c] dark:text-[#4caf50] font-bold border-b-2 border-[#006e1c] pb-1" href="#">圈子</a>
+<a class="text-[#444941] dark:text-[#c4c8bb] hover:opacity-80 transition-opacity font-medium" href="#">市场</a>
+<a class="text-[#444941] dark:text-[#c4c8bb] hover:opacity-80 transition-opacity font-medium" href="#">工具</a>
+</nav>
+<button class="text-[#006e1c] dark:text-[#4caf50] hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">auto_awesome</span>
+</button>
+<div class="absolute bottom-0 left-0 w-full h-[1px] bg-[#f2f4ed] dark:bg-[#2e312c] opacity-20"></div>
+</header>
+<!-- Mobile Header (Minimal) -->
+<header class="md:hidden flex justify-between items-center px-6 py-6 bg-surface">
+<div class="flex items-center gap-3">
+<button class="text-primary hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-[28px]">arrow_back</span>
+</button>
+<h1 class="font-headline font-extrabold text-3xl tracking-tight text-primary">圈子</h1>
+</div>
+<div class="flex gap-4">
+<button class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">search</span>
+</button>
+<button class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary-container text-on-primary flex items-center justify-center shadow-md hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+<!-- Search & Actions (Web) -->
+<div class="hidden md:flex justify-between items-end mb-12 mt-8">
+<div>
+<h2 class="font-headline font-extrabold text-5xl tracking-tight text-on-surface mb-4">社区</h2>
+<p class="text-on-surface-variant text-lg max-w-xl">加入讨论。分享你的最新烹饪实验，寻求建议，或者发现新的应季食材。</p>
+</div>
+<div class="flex gap-4">
+<div class="relative w-72">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-12 pr-4 py-3 rounded-full bg-surface-variant/50 border-none focus:ring-2 focus:ring-primary/30 focus:bg-surface-container-lowest transition-all placeholder-on-surface-variant text-sm font-medium" placeholder="搜索话题、食谱..." type="text"/>
+</div>
+<button class="px-6 py-3 rounded-full bg-gradient-to-br from-primary to-primary-container text-on-primary font-medium flex items-center gap-2 shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+<span>发布新帖</span>
+</button>
+</div>
+</div>
+<!-- Filter Chips -->
+<div class="flex overflow-x-auto pb-6 gap-3 snap-x hide-scrollbar mb-8 -mx-4 px-4 md:mx-0 md:px-0">
+<button class="snap-start shrink-0 px-6 py-2.5 rounded-full bg-primary text-on-primary font-medium text-sm transition-transform active:scale-95 shadow-sm">
+                全部
+            </button>
+<button class="snap-start shrink-0 px-6 py-2.5 rounded-full bg-surface-container-high text-on-surface-variant font-medium text-sm hover:bg-surface-variant transition-colors active:scale-95">
+                热门话题
+            </button>
+<button class="snap-start shrink-0 px-6 py-2.5 rounded-full bg-surface-container-high text-on-surface-variant font-medium text-sm hover:bg-surface-variant transition-colors active:scale-95">
+                每日建议
+            </button>
+<button class="snap-start shrink-0 px-6 py-2.5 rounded-full bg-surface-container-high text-on-surface-variant font-medium text-sm hover:bg-surface-variant transition-colors active:scale-95">
+                买菜技巧
+            </button>
+<button class="snap-start shrink-0 px-6 py-2.5 rounded-full bg-surface-container-high text-on-surface-variant font-medium text-sm hover:bg-surface-variant transition-colors active:scale-95">
+                减脂餐
+            </button>
+</div>
+<!-- Bento Grid Layout for Posts -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[minmax(300px,auto)]">
+<!-- Featured Post (Spans 2 columns on web) -->
+<article class="md:col-span-8 group rounded-2xl bg-surface-container-lowest overflow-hidden flex flex-col md:flex-row shadow-[0px_12px_32px_rgba(25,28,24,0.03)] border border-outline-variant/10">
+<div class="md:w-1/2 h-64 md:h-auto relative overflow-hidden">
+<div class="absolute inset-0 bg-black/10 z-10 rounded-xl" style="box-shadow: inset 0 0 40px rgba(255,255,255,0.05);"></div>
+<img alt="Fresh ingredients on a marble counter" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="bright, airy shot of fresh vegetables, herbs, and a wooden cutting board on a white marble kitchen island" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALWo3xO6he3MsUiKvy70CqTPc-F3SvsGCxvbmTPwzmdbQg9sKIB5Gq4dC3rFIZmxO5WKdWwVfsbjAub_ek6GjIhn477HmorlhbRRb8oI9qw9_i7s2z0s13n6jPmowQDC-c7rNUCjacAfShNqunBDPh2wUmjOdgXh6Dvwu7fgk7sK4K5u9hIY28PlISC_crLJ61CJZiH4XO6K6yKnsivVHvpoDRQ3e3v-TqDCiM_GOUaCPhqGias4Amge07cc1s-XGNvpFWm-UfBayi"/>
+<span class="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-surface/90 backdrop-blur-md text-primary text-xs font-bold tracking-wide uppercase">买菜技巧</span>
+</div>
+<div class="md:w-1/2 p-6 md:p-10 flex flex-col justify-between bg-surface-container-lowest relative z-20 -mt-6 md:mt-0 rounded-t-2xl md:rounded-none">
+<div>
+<h3 class="font-headline font-bold text-2xl md:text-3xl tracking-tight leading-tight mb-4 text-on-surface group-hover:text-primary transition-colors">如何挑选真正成熟的牛油果？</h3>
+<p class="text-on-surface-variant text-sm md:text-base line-clamp-3 mb-6">不要只看颜色！按压顶部、观察果蒂才是关键。分享我这几年在农夫市场总结的三个小秘诀，保证你每次都能买到完美状态的牛油果。</p>
+</div>
+<div class="flex items-center justify-between mt-auto pt-6 border-t border-surface-variant/50">
+<div class="flex items-center gap-3">
+<img alt="Author avatar" class="w-10 h-10 rounded-full object-cover" data-alt="smiling woman with glasses in a bright kitchen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB536eyoi8FBPa3vpk59eO-jiOx46vzWARgN0SlJFdhrZOZ3T4MREkIlL2rGL_9N85GtqaWYcx5WI4HbhAR3rQKFeLJI6ynQzH08UEn1sRLA8Qcs2F6-HbqJpXekR00015pONszztigGGa80PEcjAHs7csezpA1CrWiF5OYjVAgy_-oOW5ZfuIxDwsVgcYncHvFOBG9EFbNYSOJozvaX1cb8QG9B-eBidaV65U6PM0WFl7hAiglZYZnvLvQLhjB3gC1h_hZczKX_JtI"/>
+<div>
+<p class="text-sm font-bold text-on-surface">林晓月</p>
+<p class="text-xs text-on-surface-variant">2小时前发布</p>
+</div>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<div class="flex items-center gap-1.5 hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+<span class="text-sm font-medium">128</span>
+</div>
+<div class="flex items-center gap-1.5 hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+<span class="text-sm font-medium">45</span>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- Standard Post 1 -->
+<article class="md:col-span-4 group rounded-2xl bg-surface-container-lowest p-6 shadow-[0px_12px_32px_rgba(25,28,24,0.03)] border border-outline-variant/10 flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-bold tracking-wide uppercase">每日建议</span>
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</button>
+</div>
+<h3 class="font-headline font-bold text-xl tracking-tight leading-tight mb-3 text-on-surface group-hover:text-primary transition-colors">夏日清爽减脂：柠檬罗勒烤鸡胸肉</h3>
+<p class="text-on-surface-variant text-sm line-clamp-3 mb-6 flex-grow">鸡胸肉总是又柴又干？试试用酸奶和柠檬汁腌制一晚，搭配新鲜罗勒叶烤制，外焦里嫩，汁水丰盈，而且热量超低！</p>
+<div class="flex items-center justify-between pt-4 border-t border-surface-variant/50">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold text-xs">
+                            K
+                        </div>
+<p class="text-sm font-medium text-on-surface">Kevin Cook</p>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant">
+<div class="flex items-center gap-1 cursor-pointer">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+<span class="text-xs font-medium">89</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Standard Post 2 with Image -->
+<article class="md:col-span-4 group rounded-2xl bg-surface-container-lowest overflow-hidden shadow-[0px_12px_32px_rgba(25,28,24,0.03)] border border-outline-variant/10 flex flex-col">
+<div class="h-48 relative overflow-hidden">
+<div class="absolute inset-0 bg-black/10 z-10"></div>
+<img alt="Cooking process" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="close-up of hands pouring hot water from a kettle into a glass pour-over coffee maker, moody morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDB9tVNyEFyCx_6mnv91iK4M7d0BBDzoL3Cza1UJfA7yDSHWiiuIn_TO_x4eiJvztYFna0LegiwuRbCLEtAQWtp125K6p5q4lwBNodTUPxfZKP_sZW816Z3i1nOGJQ7mSQO0U4j3cJ8cvirjQvmFAsRnPLEO1ZZaMRJTut6sQoKsm5OuAM618kryJiJ6Q_uIgu8C7nzY2e4N82NJ4kbQwYnLkb0_HCC_hvKzq_Pn4V5us0Dg1eFgyadiphNh__OBCY_cIYCDp4weCw"/>
+</div>
+<div class="p-6 flex flex-col flex-grow bg-surface-container-lowest relative z-20">
+<span class="inline-block px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-bold tracking-wide uppercase mb-3 self-start">热门话题</span>
+<h3 class="font-headline font-bold text-xl tracking-tight leading-tight mb-3 text-on-surface group-hover:text-primary transition-colors">周末的手冲咖啡时光</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 mb-6 flex-grow">换了新的危地马拉豆子，酸质明亮，带有淡淡的花香。大家周末都在喝什么？</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-2">
+<img alt="Author avatar" class="w-8 h-8 rounded-full object-cover" data-alt="portrait of a man with a beard looking thoughtful" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPqXyyc2cd_IM0W4xW5RGgVD_FmT3hXE2JJdte4E_Nkec3MSh_8qypzg-ZrTgQOXHOuLlxKmhRtt9MsBVZW1QN7Tz2-ygZcqWwOjbMumfj5WOjXeahoxxNUnKiTuSLEjCQxNpO-Acuigdt2sRF_s4NyY_lVHqWbADeNPj6sU86NSPzTXkyetZnwvlP6puxFTsppafcr5Dt-wGSBdR40rYT3Jc0erYKCFceQtVRWllB0qwwHRcJYmjqo2k1HegJM4nigUEekU0o4511"/>
+<p class="text-sm font-medium text-on-surface">CoffeeLover</p>
+</div>
+<div class="flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">thumb_up</span>
+<span class="text-xs font-bold">210</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Standard Post 3 -->
+<article class="md:col-span-4 md:col-start-9 md:row-start-2 group rounded-2xl bg-surface-container-lowest p-6 shadow-[0px_12px_32px_rgba(25,28,24,0.03)] border border-outline-variant/10 flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-bold tracking-wide uppercase">提问求助</span>
+</div>
+<h3 class="font-headline font-bold text-xl tracking-tight leading-tight mb-3 text-on-surface group-hover:text-primary transition-colors">铁锅开锅后总是粘锅怎么办？</h3>
+<p class="text-on-surface-variant text-sm line-clamp-4 mb-6 flex-grow">新买的手工铁锅，按照网上的教程用肥猪肉开了三次锅，但是煎鸡蛋还是会粘底。是我的火候没掌握好，还是开锅的步骤有问题？求大神指导！</p>
+<div class="flex items-center justify-between pt-4 border-t border-surface-variant/50">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary-container font-bold text-xs">
+                            C
+                        </div>
+<p class="text-sm font-medium text-on-surface">ChefWannabe</p>
+</div>
+<div class="flex items-center gap-1 cursor-pointer text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">forum</span>
+<span class="text-xs font-medium">32 回复</span>
+</div>
+</div>
+</article>
+</div>
+</main>
+</body></html>

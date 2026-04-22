@@ -1,0 +1,26 @@
+# === UniApp 前端 ===
+frontend/app/dist/
+frontend/app/unpackage/
+frontend/app/node_modules/
+frontend/app/.DS_Store
+frontend/app/*.log
+
+# === 后端 ===
+backend/node_modules/
+backend/.env
+backend/.env.*
+backend/logs/
+backend/dist/
+backend/.DS_Store
+backend/*.log
+
+# === 系统文件 ===
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# === 项目特定 ===
+*.apk
+*.ipa

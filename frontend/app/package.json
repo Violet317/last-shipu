@@ -1,0 +1,44 @@
+{
+  "name": "last-shipu-frontend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run dev:h5",
+    "dev:h5": "uni -p h5",
+    "dev:app": "uni -p app",
+    "build:h5": "uni build -p h5",
+    "build:app": "uni build -p app",
+    "typecheck": "vue-tsc --noEmit",
+    "test": "vitest run --config vitest.config.ts",
+    "test:watch": "vitest --config vitest.config.ts",
+    "coverage": "vitest run --config vitest.config.ts --coverage",
+    "e2e": "playwright test",
+    "e2e:ui": "playwright test --ui"
+  },
+  "dependencies": {
+    "@dcloudio/uni-app": "3.0.0-alpha-5000820260420001",
+    "@dcloudio/uni-app-plus": "3.0.0-alpha-5000820260420001",
+    "@dcloudio/uni-components": "3.0.0-alpha-5000820260420001",
+    "@dcloudio/uni-h5": "3.0.0-alpha-5000820260420001",
+    "@dcloudio/uni-ui": "1.5.12",
+    "axios": "^1.15.1",
+    "crypto-js": "4.2.0",
+    "pinia": "2.1.7",
+    "qrcode": "1.5.4",
+    "vue": "3.4.21"
+  },
+  "devDependencies": {
+    "@dcloudio/types": "3.4.30",
+    "@dcloudio/vite-plugin-uni": "3.0.0-alpha-5000820260420001",
+    "@types/crypto-js": "4.2.2",
+    "@types/qrcode": "1.5.5",
+    "@vitest/coverage-v8": "2.1.9",
+    "sass": "1.77.8",
+    "typescript": "5.5.4",
+    "vite": "5.2.8",
+    "vitest": "2.1.9",
+    "vue-tsc": "2.0.29",
+    "@playwright/test": "1.44.1"
+  }
+}

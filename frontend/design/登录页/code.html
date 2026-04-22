@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>登录 | 美食策展人</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"inverse-on-surface": "#f9efe7", "on-secondary-fixed-variant": "#55442c", "tertiary-fixed": "#dfe8a3", "primary-container": "#946d36", "secondary-fixed": "#f9debe", primary: "#795520", outline: "#817568", "outline-variant": "#d3c4b5", "on-background": "#1f1b17", tertiary: "#586029", "on-surface-variant": "#4f453a", surface: "#fff8f4", "on-secondary-container": "#735f46", "surface-container-low": "#fcf2ea", "on-primary-container": "#fffbff", error: "#ba1a1a", "on-error-container": "#93000a", "surface-container": "#f6ece5", "primary-fixed-dim": "#eebe7f", "on-tertiary": "#ffffff", secondary: "#6f5b42", "on-secondary": "#ffffff", "on-secondary-fixed": "#261905", "inverse-primary": "#eebe7f", background: "#fff8f4", "on-primary-fixed": "#291800", "inverse-surface": "#34302b", "on-tertiary-fixed": "#191e00", "on-tertiary-container": "#fdffdf", "on-primary": "#ffffff", "surface-tint": "#7b5822", "secondary-fixed-dim": "#dcc3a3", "surface-dim": "#e2d8d1", "tertiary-container": "#71793f", "surface-variant": "#eae1d9", "on-tertiary-fixed-variant": "#434b16", "surface-container-lowest": "#ffffff", "secondary-container": "#f6dcbb", "surface-container-high": "#f0e6df", "tertiary-fixed-dim": "#c3cc89", "primary-fixed": "#ffddb3", "surface-container-highest": "#eae1d9", "error-container": "#ffdad6", "surface-bright": "#fff8f4", "on-surface": "#1f1b17", "on-error": "#ffffff", "on-primary-fixed-variant": "#60400b"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, fontFamily: {headline: ["Plus Jakarta Sans"], body: ["Be Vietnam Pro"], label: ["Be Vietnam Pro"], display: "Plus Jakarta Sans"}}}};</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .asymmetric-bleed {
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<main class="min-h-screen flex flex-col md:flex-row overflow-hidden">
+<!-- Left Visual Side (The Living Atelier) -->
+<section class="relative w-full md:w-1/2 lg:w-3/5 h-64 md:h-auto overflow-hidden">
+<img alt="A sun-drenched minimalist kitchen with fresh green herbs and artisan pottery on a marble island" class="absolute inset-0 w-full h-full object-cover asymmetric-bleed md:clip-none" data-alt="A sun-drenched minimalist kitchen with fresh green herbs and artisan pottery on a marble island in high-end editorial photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYwbjul58ccmUIfH8EQ1DbGKiYn-W4lATheuV1A12lXoY6tIj1mnXEcwfwryumntLA6h-rFyARBUuR6SswOzHImljc10NiMwyL9rOYEtwJQfJ7m2JAP450cDtvU70Hf_-3lwVjFMMuxjEtdmRaF5AV8CYIUEUo-DvzXckC8rzDBKeL_ZgixWQN5_-H0ApbJ8euEFao3Vk9IoQPkO-HnpmUB1beOaakge5WlGw0j1GpY0xH5PRwFJGOQSwDcfUfGdrAXlMpzGQWHGEG" style=""/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent md:bg-gradient-to-r"></div>
+<div class="relative z-10 p-8 md:p-16 h-full flex flex-col justify-end md:justify-center">
+<h1 class="font-headline font-extrabold text-4xl md:text-6xl text-white tracking-tighter drop-shadow-sm leading-tight max-w-md" style="">
+                    用AI赋能，精进厨艺。
+                </h1>
+<p class="mt-4 text-white/90 font-medium text-lg max-w-sm hidden md:block" style="">
+                    步入您的专属数字食坊，倾听每种食材的故事。
+                </p>
+</div>
+</section>
+<!-- Right Content Side (The Form) -->
+<section class="w-full md:w-1/2 lg:w-2/5 p-8 md:p-16 flex flex-col justify-center items-start bg-surface min-h-[500px]">
+<div class="w-full max-w-sm mx-auto md:mx-0">
+<header class="mb-12">
+<span class="text-primary font-headline font-bold tracking-widest text-xs uppercase mb-2 block" style="">美食策展人</span>
+<h2 class="font-headline font-bold text-3xl text-on-surface tracking-tight" style="">欢迎回来</h2>
+<p class="text-on-surface-variant mt-2 text-sm" style="">请登录以访问您的专属储藏室。</p>
+</header>
+<form class="space-y-6">
+<div class="space-y-1.5">
+<label class="block text-xs font-semibold text-on-surface-variant px-1 uppercase tracking-wider" for="email" style="">电子邮箱</label>
+<div class="relative">
+<input class="w-full px-5 py-4 bg-surface-container-low border-none rounded-xl text-on-surface placeholder:text-outline-variant focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all duration-200 text-sm font-medium" id="email" placeholder="chef@atelier.com" type="email"/>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="block text-xs font-semibold text-on-surface-variant px-1 uppercase tracking-wider" for="verification" style="">验证码</label>
+<div class="relative">
+<input class="w-full px-5 py-4 bg-surface-container-low border-none rounded-xl text-on-surface placeholder:text-outline-variant focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all duration-200 text-sm font-medium tracking-widest" id="verification" placeholder="000-000" type="text"/>
+</div>
+<p class="text-[10px] text-outline text-right px-1 mt-1" style="">请查看您的收件箱获取6位验证码。</p>
+</div>
+<div class="pt-4">
+<button class="w-full py-4 bg-primary-container text-on-primary-container rounded-full font-headline font-bold text-sm shadow-sm hover:opacity-90 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2" style="" type="submit">
+<span class="" style="">进入食坊</span>
+<span class="material-symbols-outlined text-lg" data-icon="arrow_forward" style="">arrow_forward</span>
+</button>
+</div>
+</form>
+<div class="mt-12 flex flex-col space-y-4">
+<div class="flex items-center gap-4">
+<div class="h-[1px] flex-1 bg-outline-variant/30"></div>
+<span class="text-[10px] font-bold text-outline uppercase tracking-tighter" style="">新用户？</span>
+<div class="h-[1px] flex-1 bg-outline-variant/30"></div>
+</div>
+<button class="w-full py-3 px-6 rounded-full border border-outline-variant/20 text-on-surface text-sm font-semibold hover:bg-surface-container-low transition-colors duration-200 flex items-center justify-center gap-3" style="">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="auto_awesome" style="">auto_awesome</span>
+<span class="" style="">访客登录<br/></span>
+</button>
+</div>
+<footer class="mt-16 text-center md:text-left">
+<p class="text-[11px] text-outline leading-relaxed max-w-[280px]" style="">
+                        继续操作即表示您接受我们的<a class="underline text-primary" href="#" style="">花园条款</a>并同意我们的<a class="underline text-primary" href="#" style="">隐私理念</a>。
+                    </p>
+</footer>
+</div>
+</section>
+</main>
+<!-- Suppressed Shells Rule: Navigation hidden for transactional login page -->
+</body></html>

@@ -1,0 +1,607 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for api/inventory.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">api</a> inventory.ts</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">91.79% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>123/134</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">71.42% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>15/21</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>8/8</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">91.79% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>123/134</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line high'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a>
+<a name='L151'></a><a href='#L151'>151</a>
+<a name='L152'></a><a href='#L152'>152</a>
+<a name='L153'></a><a href='#L153'>153</a>
+<a name='L154'></a><a href='#L154'>154</a>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a>
+<a name='L157'></a><a href='#L157'>157</a>
+<a name='L158'></a><a href='#L158'>158</a>
+<a name='L159'></a><a href='#L159'>159</a>
+<a name='L160'></a><a href='#L160'>160</a>
+<a name='L161'></a><a href='#L161'>161</a>
+<a name='L162'></a><a href='#L162'>162</a>
+<a name='L163'></a><a href='#L163'>163</a>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a>
+<a name='L175'></a><a href='#L175'>175</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">154x</span>
+<span class="cline-any cline-yes">154x</span>
+<span class="cline-any cline-yes">154x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { apiConfig } from './config'
+import { request } from './client'
+import { getJson, mockOk, setJson } from './mockStorage'
+&nbsp;
+export type InventoryCategory = 'veg' | 'meat' | 'tool'
+&nbsp;
+export interface InventoryItem {
+  id: string
+  category: InventoryCategory
+  nameZh: string
+  nameEn: string
+  kcalPer100g: number
+  unit: string
+  thumbnailUrl: string
+  sort: number
+  updatedAtMs: number
+}
+&nbsp;
+export interface InventoryUpsert {
+  category: InventoryCategory
+  nameZh: string
+  nameEn: string
+  kcalPer100g: number
+  unit: string
+  thumbnailUrl: string
+}
+&nbsp;
+const STORAGE_KEY = 'mock_inventory_v1'
+&nbsp;
+function uid(prefix: string): string {
+  return `${prefix}_${Date.now()}_${Math.floor(Math.random() * 1000)}`
+}
+&nbsp;
+function seedIfEmpty(): InventoryItem[] {
+  const existing = getJson&lt;InventoryItem[]&gt;(STORAGE_KEY, [])
+  if (existing.length &gt; 0) return existing
+&nbsp;
+  const vegThumb = '/static/images/design/食材库页.png'
+  const meatThumb = '/static/images/design/首页.png'
+  const toolThumb = '/static/images/design/扩展页.png'
+&nbsp;
+  const veg: Array&lt;Omit&lt;InventoryItem, 'id' | 'updatedAtMs'&gt;&gt; = [
+    { category: 'veg', nameZh: '土豆', nameEn: 'Potato', kcalPer100g: 77, unit: 'g', thumbnailUrl: vegThumb, sort: 10 },
+    { category: 'veg', nameZh: '胡萝卜', nameEn: 'Carrot', kcalPer100g: 41, unit: 'g', thumbnailUrl: vegThumb, sort: 20 },
+    { category: 'veg', nameZh: '花菜', nameEn: 'Cauliflower', kcalPer100g: 25, unit: 'g', thumbnailUrl: vegThumb, sort: 30 },
+    { category: 'veg', nameZh: '西葫芦', nameEn: 'Zucchini', kcalPer100g: 17, unit: 'g', thumbnailUrl: vegThumb, sort: 40 },
+    { category: 'veg', nameZh: '番茄', nameEn: 'Tomato', kcalPer100g: 18, unit: 'g', thumbnailUrl: vegThumb, sort: 50 },
+    { category: 'veg', nameZh: '芹菜', nameEn: 'Celery', kcalPer100g: 16, unit: 'g', thumbnailUrl: vegThumb, sort: 60 },
+    { category: 'veg', nameZh: '黄瓜', nameEn: 'Cucumber', kcalPer100g: 15, unit: 'g', thumbnailUrl: vegThumb, sort: 70 },
+    { category: 'veg', nameZh: '洋葱', nameEn: 'Onion', kcalPer100g: 40, unit: 'g', thumbnailUrl: vegThumb, sort: 80 },
+    { category: 'veg', nameZh: '茄子', nameEn: 'Eggplant', kcalPer100g: 25, unit: 'g', thumbnailUrl: vegThumb, sort: 90 },
+    { category: 'veg', nameZh: '菌菇', nameEn: 'Mushroom', kcalPer100g: 22, unit: 'g', thumbnailUrl: vegThumb, sort: 100 },
+    { category: 'veg', nameZh: '菠菜', nameEn: 'Spinach', kcalPer100g: 23, unit: 'g', thumbnailUrl: vegThumb, sort: 110 },
+    { category: 'veg', nameZh: '生菜', nameEn: 'Lettuce', kcalPer100g: 15, unit: 'g', thumbnailUrl: vegThumb, sort: 120 },
+    { category: 'veg', nameZh: '西兰花', nameEn: 'Broccoli', kcalPer100g: 34, unit: 'g', thumbnailUrl: vegThumb, sort: 130 },
+    { category: 'veg', nameZh: '彩椒', nameEn: 'Bell Pepper', kcalPer100g: 31, unit: 'g', thumbnailUrl: vegThumb, sort: 140 },
+    { category: 'veg', nameZh: '玉米', nameEn: 'Corn', kcalPer100g: 96, unit: 'g', thumbnailUrl: vegThumb, sort: 150 },
+    { category: 'veg', nameZh: '南瓜', nameEn: 'Pumpkin', kcalPer100g: 26, unit: 'g', thumbnailUrl: vegThumb, sort: 160 },
+    { category: 'veg', nameZh: '芦笋', nameEn: 'Asparagus', kcalPer100g: 20, unit: 'g', thumbnailUrl: vegThumb, sort: 170 },
+    { category: 'veg', nameZh: '秋葵', nameEn: 'Okra', kcalPer100g: 33, unit: 'g', thumbnailUrl: vegThumb, sort: 180 },
+    { category: 'veg', nameZh: '紫甘蓝', nameEn: 'Red Cabbage', kcalPer100g: 31, unit: 'g', thumbnailUrl: vegThumb, sort: 190 },
+    { category: 'veg', nameZh: '菜花', nameEn: 'Cauliflower', kcalPer100g: 25, unit: 'g', thumbnailUrl: vegThumb, sort: 200 },
+    { category: 'veg', nameZh: '四季豆', nameEn: 'Green Bean', kcalPer100g: 31, unit: 'g', thumbnailUrl: vegThumb, sort: 210 },
+    { category: 'veg', nameZh: '豌豆', nameEn: 'Pea', kcalPer100g: 81, unit: 'g', thumbnailUrl: vegThumb, sort: 220 },
+    { category: 'veg', nameZh: '白菜', nameEn: 'Chinese Cabbage', kcalPer100g: 13, unit: 'g', thumbnailUrl: vegThumb, sort: 230 },
+    { category: 'veg', nameZh: '包菜', nameEn: 'Cabbage', kcalPer100g: 25, unit: 'g', thumbnailUrl: vegThumb, sort: 240 },
+    { category: 'veg', nameZh: '莴笋', nameEn: 'Lettuce Stem', kcalPer100g: 15, unit: 'g', thumbnailUrl: vegThumb, sort: 250 },
+    { category: 'veg', nameZh: '豆腐', nameEn: 'Tofu', kcalPer100g: 76, unit: 'g', thumbnailUrl: vegThumb, sort: 260 },
+  ]
+&nbsp;
+  const meat: Array&lt;Omit&lt;InventoryItem, 'id' | 'updatedAtMs'&gt;&gt; = [
+    { category: 'meat', nameZh: '鸡胸肉', nameEn: 'Chicken Breast', kcalPer100g: 165, unit: 'g', thumbnailUrl: meatThumb, sort: 10 },
+    { category: 'meat', nameZh: '鸡腿', nameEn: 'Chicken Leg', kcalPer100g: 215, unit: 'g', thumbnailUrl: meatThumb, sort: 20 },
+    { category: 'meat', nameZh: '鸡翅', nameEn: 'Chicken Wing', kcalPer100g: 203, unit: 'g', thumbnailUrl: meatThumb, sort: 30 },
+    { category: 'meat', nameZh: '牛里脊', nameEn: 'Beef Tenderloin', kcalPer100g: 218, unit: 'g', thumbnailUrl: meatThumb, sort: 40 },
+    { category: 'meat', nameZh: '牛腩', nameEn: 'Beef Brisket', kcalPer100g: 250, unit: 'g', thumbnailUrl: meatThumb, sort: 50 },
+    { category: 'meat', nameZh: '猪里脊', nameEn: 'Pork Tenderloin', kcalPer100g: 143, unit: 'g', thumbnailUrl: meatThumb, sort: 60 },
+    { category: 'meat', nameZh: '五花肉', nameEn: 'Pork Belly', kcalPer100g: 518, unit: 'g', thumbnailUrl: meatThumb, sort: 70 },
+    { category: 'meat', nameZh: '火腿', nameEn: 'Ham', kcalPer100g: 145, unit: 'g', thumbnailUrl: meatThumb, sort: 80 },
+    { category: 'meat', nameZh: '香肠', nameEn: 'Sausage', kcalPer100g: 301, unit: 'g', thumbnailUrl: meatThumb, sort: 90 },
+    { category: 'meat', nameZh: '鸡蛋', nameEn: 'Egg', kcalPer100g: 155, unit: 'pcs', thumbnailUrl: meatThumb, sort: 100 },
+    { category: 'meat', nameZh: '虾仁', nameEn: 'Shrimp', kcalPer100g: 99, unit: 'g', thumbnailUrl: meatThumb, sort: 110 },
+    { category: 'meat', nameZh: '鳕鱼', nameEn: 'Cod', kcalPer100g: 82, unit: 'g', thumbnailUrl: meatThumb, sort: 120 },
+    { category: 'meat', nameZh: '三文鱼', nameEn: 'Salmon', kcalPer100g: 208, unit: 'g', thumbnailUrl: meatThumb, sort: 130 },
+    { category: 'meat', nameZh: '龙利鱼', nameEn: 'Sole', kcalPer100g: 90, unit: 'g', thumbnailUrl: meatThumb, sort: 140 },
+    { category: 'meat', nameZh: '鱿鱼', nameEn: 'Squid', kcalPer100g: 92, unit: 'g', thumbnailUrl: meatThumb, sort: 150 },
+  ]
+&nbsp;
+  const tool: Array&lt;Omit&lt;InventoryItem, 'id' | 'updatedAtMs'&gt;&gt; = [
+    { category: 'tool', nameZh: '平底锅', nameEn: 'Frying Pan', kcalPer100g: 0, unit: 'pcs', thumbnailUrl: toolThumb, sort: 10 },
+    { category: 'tool', nameZh: '炒锅', nameEn: 'Wok', kcalPer100g: 0, unit: 'pcs', thumbnailUrl: toolThumb, sort: 20 },
+    { category: 'tool', nameZh: '汤锅', nameEn: 'Pot', kcalPer100g: 0, unit: 'pcs', thumbnailUrl: toolThumb, sort: 30 },
+    { category: 'tool', nameZh: '蒸锅', nameEn: 'Steamer', kcalPer100g: 0, unit: 'pcs', thumbnailUrl: toolThumb, sort: 40 },
+    { category: 'tool', nameZh: '压力锅', nameEn: 'Pressure Cooker', kcalPer100g: 0, unit: 'pcs', thumbnailUrl: toolThumb, sort: 50 },
+    { category: 'tool', nameZh: '电饭煲', nameEn: 'Rice Cooker', kcalPer100g: 0, unit: 'pcs', thumbnailUrl: toolThumb, sort: 60 },
+    { category: 'tool', nameZh: '空气炸锅', nameEn: 'Air Fryer', kcalPer100g: 0, unit: 'pcs', thumbnailUrl: toolThumb, sort: 70 },
+    { category: 'tool', nameZh: '烤箱', nameEn: 'Oven', kcalPer100g: 0, unit: 'pcs', thumbnailUrl: toolThumb, sort: 80 },
+    { category: 'tool', nameZh: '刀具', nameEn: 'Knife', kcalPer100g: 0, unit: 'pcs', thumbnailUrl: toolThumb, sort: 90 },
+    { category: 'tool', nameZh: '砧板', nameEn: 'Cutting Board', kcalPer100g: 0, unit: 'pcs', thumbnailUrl: toolThumb, sort: 100 },
+  ]
+&nbsp;
+  const now = Date.now()
+  const seeded = [...veg, ...meat, ...tool].map((x) =&gt; ({ ...x, id: uid('inv'), updatedAtMs: now }))
+  setJson(STORAGE_KEY, seeded)
+  return seeded
+}
+&nbsp;
+function readAll(): InventoryItem[] {
+  return seedIfEmpty()
+}
+&nbsp;
+function writeAll(list: InventoryItem[]): void {
+  setJson(STORAGE_KEY, list)
+}
+&nbsp;
+export async function listInventory(): Promise&lt;InventoryItem[]&gt; {
+  if (!apiConfig.baseUrl) {
+    const list = readAll().slice().sort((a, b) =&gt; a.sort - b.sort)
+    const res = await mockOk(list, 180)
+    return res.data
+<span class="branch-0 cbranch-no" title="branch not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >  return await request&lt;InventoryItem[]&gt;({ url: '/api/inventory', method: 'GET' })</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
+export async function createInventoryItem(body: InventoryUpsert): Promise&lt;InventoryItem&gt; {
+  if (!apiConfig.baseUrl) {
+    const list = readAll()
+    const next: InventoryItem = {
+      id: uid('inv'),
+      ...body,
+      sort: Math.max(0, ...list.map((x) =&gt; x.sort)) + 10,
+      updatedAtMs: Date.now(),
+    }
+    writeAll([...list, next])
+    const res = await mockOk(next, 180)
+    return res.data
+<span class="branch-0 cbranch-no" title="branch not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >  return await request&lt;InventoryItem, InventoryUpsert&gt;({ url: '/api/inventory', method: 'POST', body })</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
+export async function updateInventoryItem(id: string, body: InventoryUpsert &amp; { sort?: number }): Promise&lt;InventoryItem&gt; {
+  if (!apiConfig.baseUrl) {
+    const list = readAll()
+    const idx = list.findIndex((x) =&gt; x.id === id)
+    if (idx &lt; 0) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      const res = await mockOk(null as unknown as InventoryItem, 0)</span>
+<span class="cstat-no" title="statement not covered" >      return res.data</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+    const prev = list[idx]
+    const next: InventoryItem = {
+      ...prev,
+      ...body,
+      sort: body.<span class="branch-0 cbranch-no" title="branch not covered" >sort ?? prev.sort,</span>
+      updatedAtMs: Date.now(),
+    }
+    const copy = list.slice()
+    copy[idx] = next
+    writeAll(copy)
+    const res = await mockOk(next, 180)
+    return res.data
+<span class="branch-0 cbranch-no" title="branch not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >  return await request&lt;InventoryItem, InventoryUpsert &amp; { sort?: number }&gt;({ url: `/api/inventory/${encodeURIComponent(id)}`, method: 'PUT', body })</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
+export async function deleteInventoryItem(id: string): Promise&lt;{ ok: true }&gt; {
+  if (!apiConfig.baseUrl) {
+    const list = readAll()
+    writeAll(list.filter((x) =&gt; x.id !== id))
+    const res = await mockOk({ ok: true as const }, 180)
+    return res.data
+<span class="branch-0 cbranch-no" title="branch not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >  return await request&lt;{ ok: true }&gt;({ url: `/api/inventory/${encodeURIComponent(id)}`, method: 'DELETE' })</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2026-04-21T12:11:29.525Z
+            </div>
+        <script src="../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../sorter.js"></script>
+        <script src="../block-navigation.js"></script>
+    </body>
+</html>
+    

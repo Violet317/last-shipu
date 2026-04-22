@@ -1,0 +1,38 @@
+@import "@/styles/variables.scss";
+@import "@/styles/theme.scss";
+
+page {
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+  width: 100%;
+  overflow-x: hidden;
+}
+
+view,
+scroll-view,
+swiper,
+text,
+image,
+input,
+textarea,
+button {
+  box-sizing: border-box;
+}
+
+image {
+  max-width: 100%;
+  display: block;
+}
+
+.font-headline {
+  font-family: var(--font-headline);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.shadow-editorial {
+  box-shadow: 0rpx 16rpx 48rpx rgba(var(--shadow-rgb), var(--shadow-alpha-editorial));
+}

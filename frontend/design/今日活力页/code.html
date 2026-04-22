@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be_Vietnam_Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "inverse-on-surface": "#f9efe7",
+                        "on-secondary-fixed-variant": "#55442c",
+                        "tertiary-fixed": "#dfe8a3",
+                        "primary-container": "#946d36",
+                        "secondary-fixed": "#f9debe",
+                        primary: "#795520",
+                        outline: "#817568",
+                        "outline-variant": "#d3c4b5",
+                        "on-background": "#1f1b17",
+                        tertiary: "#586029",
+                        "on-surface-variant": "#4f453a",
+                        surface: "#fff8f4",
+                        "on-secondary-container": "#735f46",
+                        "surface-container-low": "#fcf2ea",
+                        "on-primary-container": "#fffbff",
+                        error: "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#f6ece5",
+                        "primary-fixed-dim": "#eebe7f",
+                        "on-tertiary": "#ffffff",
+                        secondary: "#6f5b42",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#261905",
+                        "inverse-primary": "#eebe7f",
+                        background: "#fff8f4",
+                        "on-primary-fixed": "#291800",
+                        "inverse-surface": "#34302b",
+                        "on-tertiary-fixed": "#191e00",
+                        "on-tertiary-container": "#fdffdf",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#7b5822",
+                        "secondary-fixed-dim": "#dcc3a3",
+                        "surface-dim": "#e2d8d1",
+                        "tertiary-container": "#71793f",
+                        "surface-variant": "#eae1d9",
+                        "on-tertiary-fixed-variant": "#434b16",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#f6dcbb",
+                        "surface-container-high": "#f0e6df",
+                        "tertiary-fixed-dim": "#c3cc89",
+                        "primary-fixed": "#ffddb3",
+                        "surface-container-highest": "#eae1d9",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#fff8f4",
+                        "on-surface": "#1f1b17",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#60400b"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    fontFamily: {
+                        headline: ["Plus Jakarta Sans"],
+                        body: ["Be Vietnam Pro"],
+                        label: ["Be Vietnam Pro"],
+                        display: "Plus Jakarta Sans"
+                    }
+                }
+            }
+        };
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-indent {
+            margin-left: clamp(1rem, 5vw, 2.5rem);
+        }
+        body {
+            min-height: 100dvh;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<header class="w-full top-0 z-50 sticky px-6 py-6 bg-surface/80 backdrop-blur-md">
+<div class="flex justify-between items-center max-w-5xl mx-auto">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="User profile photo" data-alt="close-up portrait of a smiling woman with a natural aesthetic in soft, warm studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZbaJWibNkmsnqmTuAUqQqpUzUtyN6TSsnB3K7QskwJc7pVn_WR7YLMo8CrJoA2zTFZMHRH_d_UvtO9sp3yFulZ73-jX42ol9b0ymmiqrG5Sj_9pXI8YWJj2j_DsZ-j0laAODJexZMm9HDJhmUnlGg7MxqfnpDXL3eYZyRpqF_Yn3jCJxjyqO5DhH10yh2DBLF4-ayuJAfw7IKbyoh4XIrdOi_Bhm0h2v6agwl8SnqiCZf7k5yMSTZUvsDaxF01_sY2Pg3xu1yMHq3"/>
+</div>
+</div>
+</header>
+<main class="pb-24 px-6 max-w-5xl mx-auto">
+<!-- Hero Section: Daily Statistics -->
+<section class="mb-10">
+<div class="editorial-indent mb-6">
+<p class="font-label text-sm text-on-surface-variant tracking-wider">10月24日 星期二</p>
+<h2 class="font-headline text-3xl font-bold tracking-tight text-on-surface">今日活力</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+<!-- Calorie Progress Card -->
+<div class="md:col-span-5 bg-surface-container-lowest p-8 rounded-xl shadow-[0px_12px_32px_rgba(25,28,24,0.06)] flex flex-col items-center justify-center relative overflow-hidden">
+<div class="absolute -top-4 -right-4 w-24 h-24 bg-primary/5 rounded-full blur-2xl"></div>
+<div class="relative w-48 h-48 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-high" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-width="12"></circle>
+<circle class="text-primary" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-dasharray="552.92" stroke-dashoffset="138" stroke-linecap="round" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-headline text-4xl font-extrabold text-on-surface">1,420</span>
+<span class="font-label text-xs text-on-surface-variant font-medium tracking-widest">剩余千卡</span>
+</div>
+</div>
+<div class="mt-8 flex justify-between w-full text-center">
+<div>
+<p class="text-on-surface-variant text-[10px] font-bold tracking-tighter">摄入</p>
+<p class="font-headline font-bold text-lg">780</p>
+</div>
+<div class="h-8 w-px bg-outline-variant/30 self-center"></div>
+<div>
+<p class="text-on-surface-variant text-[10px] font-bold tracking-tighter">运动</p>
+<p class="font-headline font-bold text-lg text-primary">240</p>
+</div>
+</div>
+</div>
+<!-- Macros Bento Grid -->
+<div class="md:col-span-7 grid grid-cols-2 gap-4">
+<!-- Protein -->
+<div class="bg-surface-container-low p-6 rounded-xl flex flex-col justify-between">
+<div>
+<p class="font-label text-xs font-bold text-on-secondary-fixed-variant mb-1">蛋白质</p>
+<h3 class="font-headline text-2xl font-bold">52g</h3>
+</div>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[45%]"></div>
+</div>
+</div>
+<!-- Carbs -->
+<div class="bg-surface-container-low p-6 rounded-xl flex flex-col justify-between">
+<div>
+<p class="font-label text-xs font-bold text-on-tertiary-fixed-variant mb-1">碳水化合物</p>
+<h3 class="font-headline text-2xl font-bold">112g</h3>
+</div>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-container w-[65%]"></div>
+</div>
+</div>
+<!-- Fats -->
+<div class="col-span-2 bg-surface-container-low p-6 rounded-xl relative overflow-hidden">
+<div class="flex justify-between items-end">
+<div>
+<p class="font-label text-xs font-bold text-on-surface-variant mb-1">脂肪</p>
+<h3 class="font-headline text-2xl font-bold">28g</h3>
+</div>
+<div class="flex gap-1 items-end h-12">
+<div class="w-4 bg-primary/20 rounded-t-sm h-1/2"></div>
+<div class="w-4 bg-primary/20 rounded-t-sm h-3/4"></div>
+<div class="w-4 bg-primary/20 rounded-t-sm h-2/3"></div>
+<div class="w-4 bg-primary/60 rounded-t-sm h-full"></div>
+<div class="w-4 bg-primary/20 rounded-t-sm h-1/2"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Meal Logging Section -->
+<section class="space-y-6">
+<div class="flex justify-between items-end editorial-indent">
+<h3 class="font-headline text-2xl font-bold text-on-surface">餐食</h3>
+<button class="text-primary font-bold text-sm hover:underline transition-all">查看趋势</button>
+</div>
+<!-- Breakfast -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden">
+<div class="p-6 flex justify-between items-center cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-5">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Breakfast bowl" data-alt="Overhead shot of a colorful breakfast bowl with yogurt, granola, and fresh berries on a rustic table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjO8NYJYnjiCETF4nrPlvz79jG_K0to5rkFH2hOO3VZWcLp5bkKnBgVRi3YePBWGCQvOAO7Cv4SzR69mLidoSsaMrCBBz_T5Z549iLCE72CKWij3biY2Q9NFOrwuW_UfvCSVhW50lwulKq1DGHaJWY2Z8olldukGirfeMTnlzENECLezcnLbJacNf48db9GPNEA1NRlYFzrDxLonKn7zGKo7cEHNpvLDcKPKB4vRGb8yLM0kFCsWER8F4mr_YwBJ8xF_Fepse_jUtT"/>
+</div>
+<div>
+<h4 class="font-headline text-lg font-bold">早餐</h4>
+<p class="font-body text-sm text-on-surface-variant">牛油果吐司，溏心蛋 • 340 千卡</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">add_circle</span>
+</div>
+</div>
+<!-- Lunch -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden">
+<div class="p-6 flex justify-between items-center cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-5">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Lunch salad" data-alt="Vibrant mediterranean salad with chickpeas, olives, and feta cheese in a minimal ceramic bowl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_XIW705kPRyFpL1zVrF9LoZdlRby75o9_4ueTcTO4GhTmqWXuDzClQepGXHpGIhXcqNxqE5Eee8M51viijcBYtW6zwe0H9Lm2sCh2az9lugRf8ofwleW1AtjeFyUBmCXjPg-ps1-rXtW2iR9LHxx3xbT6YJLGFdegiHCt61rlvNRsc1cphwRiom38pTQm_g2Y8xzGcI6U2F2IRtSnTUSFbo50rsvGFYOUDILkhloLKBOEUkggZSR2Fi4jjKewy-Ox0cvbIfA6J7Se"/>
+</div>
+<div>
+<h4 class="font-headline text-lg font-bold">午餐</h4>
+<p class="font-body text-sm text-on-surface-variant">藜麦能量碗 • 440 千卡</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">add_circle</span>
+</div>
+</div>
+<!-- Dinner (Empty State/Placeholder) -->
+<div class="bg-surface-container-lowest border-2 border-dashed border-outline-variant/30 rounded-xl p-8 flex flex-col items-center justify-center text-center group hover:border-primary/40 transition-all cursor-pointer">
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant group-hover:bg-primary-container group-hover:text-on-primary-container transition-all mb-3">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<h4 class="font-headline font-bold text-on-surface">晚餐</h4>
+<p class="font-body text-sm text-on-surface-variant mt-1">今晚吃点什么？</p>
+<button class="mt-4 px-6 py-2 bg-primary-container text-on-primary-container rounded-full font-bold text-sm scale-95 active:scale-90 transition-transform">记录晚餐</button>
+</div>
+</section>
+<!-- AI Insights -->
+<section class="mt-12 p-6 bg-tertiary/5 rounded-xl border border-tertiary-container/20">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-tertiary mt-1" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<div>
+<h5 class="font-headline font-bold text-tertiary">管家建议</h5>
+<p class="font-body text-sm text-on-surface-variant mt-2 leading-relaxed">
+                    今天您的膳食纤维摄入很棒！晚餐加入一些烤杏仁有助于达到健康脂肪目标，同时保持合理的热量缺口。
+                </p>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed right-6 bottom-10 w-14 h-14 bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-full shadow-lg flex items-center justify-center scale-100 hover:scale-105 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">add</span>
+</button>
+</body></html>

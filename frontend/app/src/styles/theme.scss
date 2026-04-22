@@ -1,0 +1,76 @@
+.theme-root {
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+}
+
+.bg-background {
+  background-color: var(--color-background);
+}
+
+.bg-surface {
+  background-color: var(--color-surface);
+}
+
+.bg-surface-container {
+  background-color: var(--color-surface-container);
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-brand {
+  color: var(--color-brand);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-primary-container {
+  background-color: var(--color-primary-container);
+}
+
+.bg-brand {
+  background-color: var(--color-brand);
+}
+
+.bg-brand-container {
+  background-color: var(--color-brand-container);
+}
+
+.text-on-primary {
+  color: var(--color-on-primary);
+}
+
+.text-on-primary-container {
+  color: var(--color-on-primary-container);
+}
+
+.text-on-brand {
+  color: var(--color-on-brand);
+}
+
+.text-on-brand-container {
+  color: var(--color-on-brand-container);
+}
+
+.text-on-surface {
+  color: var(--color-on-surface);
+}
+
+.text-on-surface-variant {
+  color: var(--color-on-surface-variant);
+}
+
+.border-outline-variant {
+  border-color: var(--color-outline-variant);
+}
+
+.rounded-xl {
+  border-radius: var(--radius-xl);
+}
+
+.rounded-full {
+  border-radius: var(--radius-full);
+}

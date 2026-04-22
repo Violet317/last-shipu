@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>The Curator - 市场</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;family=Be+Vietnam+Pro:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"outline-variant": "#d3c4b5", primary: "#795520", "on-primary-container": "#fffbff", tertiary: "#586029", "surface-variant": "#eae1d9", "on-secondary": "#ffffff", "on-background": "#1f1b17", "on-secondary-container": "#735f46", outline: "#817568", "on-secondary-fixed": "#261905", "error-container": "#ffdad6", "surface-container-high": "#f0e6df", "primary-fixed-dim": "#eebe7f", "primary-fixed": "#ffddb3", "inverse-on-surface": "#f9efe7", "tertiary-fixed-dim": "#c3cc89", "surface-tint": "#7b5822", "surface-container-low": "#fcf2ea", secondary: "#6f5b42", "inverse-surface": "#34302b", "surface-container-lowest": "#ffffff", "secondary-fixed": "#f9debe", "inverse-primary": "#eebe7f", background: "#fff8f4", "tertiary-container": "#71793f", surface: "#fff8f4", "surface-bright": "#fff8f4", "on-primary-fixed-variant": "#60400b", "secondary-container": "#f6dcbb", "on-tertiary": "#ffffff", "surface-container-highest": "#eae1d9", error: "#ba1a1a", "on-tertiary-fixed-variant": "#434b16", "on-surface": "#1f1b17", "on-tertiary-container": "#fdffdf", "secondary-fixed-dim": "#dcc3a3", "on-primary": "#ffffff", "primary-container": "#946d36", "on-error-container": "#93000a", "on-error": "#ffffff", "on-tertiary-fixed": "#191e00", "on-surface-variant": "#4f453a", "on-secondary-fixed-variant": "#55442c", "surface-dim": "#e2d8d1", "on-primary-fixed": "#291800", "tertiary-fixed": "#dfe8a3", "surface-container": "#f6ece5"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {}, fontFamily: {headline: ["Plus Jakarta Sans"], body: ["Be Vietnam Pro"], label: ["Be Vietnam Pro"], display: "Plus Jakarta Sans"}}}};</script>
+<style>
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: theme('colors.surface');
+            color: theme('colors.on-surface');
+        }
+        h1, h2, h3, h4, h5, h6, .font-headline {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+      </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen pb-12 pt-10 selection:bg-primary-container selection:text-on-primary-container">
+<main class="max-w-7xl mx-auto px-6">
+<!-- Header & Categories -->
+<section class="mb-10 mt-4">
+<div class="flex items-start gap-4 mb-6">
+<button class="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-full hover:bg-surface-variant/50 transition-colors text-on-surface mt-1" style="">
+<span class="material-symbols-outlined" data-icon="arrow_back" style="">arrow_back</span>
+</button>
+<h1 class="text-4xl md:text-5xl font-headline font-extrabold tracking-tight text-on-surface" style="">发现<br>
+<span class="text-primary" style="">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;卓越食材</span>
+</h1>
+</div>
+<div class="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+<button class="px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label text-sm font-semibold whitespace-nowrap hover:scale-95 transition-transform" style="">全部</button>
+<button class="px-6 py-2 rounded-full bg-primary text-on-primary font-label text-sm font-semibold whitespace-nowrap hover:scale-95 transition-transform shadow-[0px_4px_12px_rgba(0,110,28,0.2)]" style="">新鲜食材</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label text-sm font-semibold whitespace-nowrap hover:scale-95 transition-transform" style="">专业厨具</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label text-sm font-semibold whitespace-nowrap hover:scale-95 transition-transform" style="">营养补剂</button>
+</div>
+</section>
+<!-- Bento Grid Products -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Large Card (Span 2 cols on lg) -->
+<article class="col-span-1 lg:col-span-2 bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_12px_32px_rgba(25,28,24,0.06)] relative group">
+<div class="aspect-w-16 aspect-h-9 md:aspect-h-6 w-full h-64 md:h-80 overflow-hidden">
+<img alt="Truffle" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="High-end macro photography of a fresh black truffle next to a stainless steel grater on dark slate countertop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3Y67IMqh2s6IsNhb6GZlqZaK57Gfzmgb3eO1njjDQiAEdliBorSVXRaSXLYV08Ni1Rt1-a7fnymyfRMe0Drxo-7sEFwCZPs6_hiKn6do_990b1lWZ2v6kr_pv5fzTpQtmcpOtvAIejsvl0OmN2alZJnagyHoFZxn5Roswz1d3dO-3UFIQZWiuxLcpjVV3v33TnXoeaSq2kQIMBJDO1VoJ9zBQtUQ_J_f6KVKlxZZ0B-tCF6abfTk-Xhx02QO7sFSlW2PQ4UDIy4Qi" style="">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+</div>
+<div class="absolute bottom-0 left-0 w-full p-6 text-white flex justify-between items-end">
+<div>
+<span class="inline-block px-3 py-1 bg-surface-container-lowest/20 backdrop-blur-md rounded-full text-xs font-semibold tracking-wider mb-3" style="">限定供应</span>
+<h2 class="text-2xl font-headline font-bold mb-1" style="">黑松露珍品</h2>
+<p class="text-sm opacity-90 font-body" style="">来自意大利阿尔巴的顶级珍品</p>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-xl font-bold" style="">¥1,299</span>
+<button class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary-container text-on-primary flex items-center justify-center hover:scale-105 transition-transform shadow-lg" style="">
+<span class="material-symbols-outlined" data-icon="add_shopping_cart" style="">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Standard Card -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_12px_32px_rgba(25,28,24,0.06)] group flex flex-col">
+<div class="w-full h-48 overflow-hidden bg-surface-container-low relative">
+<img alt="Olive Oil" class="w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:scale-105 transition-transform duration-500" data-alt="Artisan bottle of extra virgin olive oil backlit by warm morning sunlight on a rustic wooden table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFUvMMELfCDEFYAaHTA5ETeCJJP-adoAiUjm1zyqiCZNQ9j_ch3gw_fOTCvciIwYU3hHY1JDzZQG6PMSks1pF9Hlh5piEAr-2aWGEkuM1Cqz4henfuH_OcE0T3CfWjexiP9pRDX8aDK_vWBH9PZRZmhuGnhmjDK1LYX5x2BqkeqUGKtzITBQFpGf95kJ1-7nKfA-ccU1KEbYNe-K1yhrqA2BgDYGAa20AZfcPJRRu-JE_dh8aHqEjlYjK8sfc6A_htvY46xe6hik43" style="">
+<div class="absolute inset-0 shadow-[inset_0_0_20px_rgba(255,255,255,0.2)]"></div> <!-- Subtle glow -->
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="text-lg font-headline font-bold text-on-surface mb-2" style="">冷榨橄榄油</h3>
+<p class="text-sm text-on-surface-variant font-body" style="">手工采摘，第一道冷榨</p>
+</div>
+<div class="flex justify-between items-center mt-6">
+<span class="text-lg font-bold text-on-surface" style="">¥328</span>
+<button class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center hover:scale-95 transition-transform" style="">
+<span class="material-symbols-outlined" data-icon="add_shopping_cart" style="">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Standard Card -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_12px_32px_rgba(25,28,24,0.06)] group flex flex-col">
+<div class="w-full h-48 overflow-hidden bg-surface-container-low relative">
+<img alt="Cast Iron Pan" class="w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:scale-105 transition-transform duration-500" data-alt="Premium cast iron skillet sitting on a clean white marble kitchen island top down view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7WPuBnUUWC95KQgMMWq1ovCp7vpuemgiC6zNoFy-YkKLNY7ZK4dBEiPbwxAstT432IRdqviCB4mkrrAy9r6-BFMvfSpK-CkNTc8A23cq56xl1SemHxk5ktGEGqRo3yPkY1dn0ARDSBIchiRnlUFaXh6np6U153RnrrkBJw09NresvfMjzGy54zdT83N2LEWym1r7LWC6FF2hHS2XVwuKsq2Yj6jsVIACeVwy19CxtQtiCgXcBwNrknr0CHpQHUNjSlx63INSAhqsw" style="">
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="text-lg font-headline font-bold text-on-surface mb-2" style="">手工铸铁煎锅</h3>
+<p class="text-sm text-on-surface-variant font-body" style="">百年工艺，传世之作</p>
+</div>
+<div class="flex justify-between items-center mt-6">
+<span class="text-lg font-bold text-on-surface" style="">¥899</span>
+<button class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center hover:scale-95 transition-transform" style="">
+<span class="material-symbols-outlined" data-icon="add_shopping_cart" style="">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Standard Card -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_12px_32px_rgba(25,28,24,0.06)] group flex flex-col">
+<div class="w-full h-48 overflow-hidden bg-surface-container-low relative">
+<img alt="Sea Salt" class="w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:scale-105 transition-transform duration-500" data-alt="Coarse sea salt crystals in a small handmade ceramic bowl with a wooden scoop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJmz7dqzZ3xeWSLbLWaYb21LH0cszXTCeJFx5KgoEdBON-g39aSoE8Bhy56jNJ5nKdZdrkjbn2mc9tyMH02IGFX8zOp157bnRie-v_kc81xMgfui3qhGQZQiesN61EwWi_cIF5GX4AGMQCOk4puuk5VYBFuCLXkCtnZf2P9wkLfUTuWG6FBft4cPjGrC-D708NQVFYKKg96Zc3E-ehkxLDk8oyVltqcCv3RklsX_Z9ozZREDAClCo_JkM5RPWvbGIp57JyiBQ2YJ5Q" style="">
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="text-lg font-headline font-bold text-on-surface mb-2" style="">喜马拉雅粉盐</h3>
+<p class="text-sm text-on-surface-variant font-body" style="">天然结晶，富含矿物质</p>
+</div>
+<div class="flex justify-between items-center mt-6">
+<span class="text-lg font-bold text-on-surface" style="">¥128</span>
+<button class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center hover:scale-95 transition-transform" style="">
+<span class="material-symbols-outlined" data-icon="add_shopping_cart" style="">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Minimalist Promo Block -->
+<article class="bg-surface-container-low rounded-xl p-6 flex flex-col justify-center items-center text-center border border-outline-variant/20 shadow-none">
+<div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4">
+<span class="material-symbols-outlined text-3xl" data-icon="package_2" style="">package_2</span>
+</div>
+<h3 class="text-xl font-headline font-bold text-on-surface mb-2" style="">定制礼盒</h3>
+<p class="text-sm text-on-surface-variant font-body mb-6 max-w-[200px]" style="">为挚爱挑选独特的料理佳品</p>
+<button class="px-6 py-2 rounded-full border-2 border-primary text-primary font-label text-sm font-semibold hover:bg-primary/5 transition-colors" style="">
+                    开始挑选
+                </button>
+</article>
+</section>
+</main>
+</body></html>
