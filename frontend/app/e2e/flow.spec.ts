@@ -13,16 +13,20 @@ test('tabbar icons and navigation', async ({ page }) => {
 })
 
 test('my page entry navigates to recipe record', async ({ page }) => {
-  await page.goto('/pages/me')
-  await page.getByText('食谱记录').click()
-  await expect(page).toHaveURL(/\/pages\/recipe/)
+  await page.goto('/pages/home')
+  await page.getByText('👤 我的', { exact: true }).click()
+  await expect(page).toHaveURL(/\/pages\/me/)
+  await page.getByText('食谱记录').click({ force: true })
+  await expect(page).toHaveURL(/\/pages\/archive/)
 })
 
 test('ingredients selection flows into aiCreate and shortcut fills input', async ({ page }) => {
-  await page.goto('/pages/ingredients')
+  await page.goto('/pages/home')
+  await page.getByText('🥬 食材库', { exact: true }).click()
+  await expect(page).toHaveURL(/\/pages\/ingredients/)
 
   await page.getByText('番茄').first().click()
-  await page.getByText('厨具', { exact: true }).click()
+  await page.getByText('厨具', { exact: true }).click({ force: true })
   await page.getByText('平底锅').first().click()
 
   await page.getByText('开始创作', { exact: true }).click()

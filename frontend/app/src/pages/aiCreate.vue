@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref } from 'vue'
+import { onLoad } from '@dcloudio/uni-app'
 import { generateRecipe, type GenerateRecipeRequest } from '@/api/recipe'
 import { useChatStore, type ChatMessage } from '@/stores/chat'
 import { useRecipeStore } from '@/stores/recipe'
@@ -27,16 +28,23 @@ function onBack(): void {
   uni.switchTab({ url: '/pages/home' })
 }
 
+async function chooseImageAndGo(mode: 'receipt' | 'fridge'): Promise<void> {
+  const res = await uni.chooseImage({ count: 1, sizeType: ['compressed'], sourceType: ['camera', 'album'] })
+  const path = res.tempFilePaths?.[0]
+  if (!path) return
+  uni.navigateTo({ url: `/pages/pantryImport?mode=${mode}&path=${encodeURIComponent(path)}` })
+}
+
 function onOpenPlus(): void {
   uni.showActionSheet({
-    itemList: ['选择食材', '清空已选', '清空对话'],
-    success: (res) => {
+    itemList: ['拍小票入库', '拍冰箱圈选', '清空对话'],
+    success: async (res) => {
       if (res.tapIndex === 0) {
-        uni.switchTab({ url: '/pages/ingredients' })
+        await chooseImageAndGo('receipt')
         return
       }
       if (res.tapIndex === 1) {
-        chatStore.clearSelected()
+        await chooseImageAndGo('fridge')
         return
       }
       if (res.tapIndex === 2) {
@@ -95,7 +103,7 @@ async function onSend(): Promise<void> {
     const assistantMsg: ChatMessage = {
       id: uid('a'),
       role: 'assistant',
-      text: `夏日清淡晚餐，这道「${detail.title}」非常适合。只需${detail.durationMinutes}分钟，酸甜开胃，且富含优质蛋白。`,
+      text: `推荐一道快手做法：「${detail.title}」。只需${detail.durationMinutes}分钟，优先消耗临期食材。`,
       recipe: {
         id: detail.id,
         title: detail.title,
@@ -114,6 +122,78 @@ async function onSend(): Promise<void> {
     loading.value = false
   }
 }
+
+async function onSendMany(count: number, basePrompt: string | null): Promise<void> {
+  if (loading.value) return
+  const text = (basePrompt ?? draft.value).trim()
+  if (!text && chatStore.selectedIngredients.length === 0) {
+    uni.showToast({ title: '请输入需求或先选择食材', icon: 'none' })
+    return
+  }
+  loading.value = true
+  try {
+    const finalText = text || `请基于我已选食材生成 3 个快手做法，步骤清晰，给出热量与替代食材建议。`
+    const userMsg: ChatMessage = { id: uid('u'), role: 'user', text: finalText }
+    chatStore.pushMessage(userMsg)
+    chatStore.setDraft('')
+
+    for (let i = 1; i <= count; i += 1) {
+      const body: GenerateRecipeRequest = {
+        prompt: count > 1 ? `${finalText}（方案${i}）` : finalText,
+        ingredients: chatStore.selectedIngredients,
+        tools: chatStore.selectedTools,
+      }
+      const detail = await generateRecipe(body)
+      const createdAtMs = Date.now()
+      recipeDetailsStore.put({ ...detail, createdAtMs })
+      recipeStore.setRecent([
+        {
+          id: detail.id,
+          title: detail.title,
+          coverUrl: detail.coverUrl,
+          tags: detail.tags,
+          kcal: detail.kcal,
+          durationMinutes: detail.durationMinutes,
+          createdAtMs,
+        },
+        ...recipeStore.recent,
+      ])
+
+      const assistantMsg: ChatMessage = {
+        id: uid('a'),
+        role: 'assistant',
+        text: `方案${i}：「${detail.title}」—— ${detail.durationMinutes}分钟快手做法。`,
+        recipe: { id: detail.id, title: detail.title, coverUrl: detail.coverUrl, durationMinutes: detail.durationMinutes, kcal: detail.kcal },
+      }
+      chatStore.pushMessage(assistantMsg)
+      scrollInto.value = assistantMsg.id
+    }
+    await nextTick()
+  } catch (e) {
+    uni.showToast({ title: e instanceof Error ? e.message : '生成失败', icon: 'none' })
+  } finally {
+    loading.value = false
+  }
+}
+
+onLoad((q) => {
+  const ing = (q as any)?.ingredients
+  const prompt = (q as any)?.prompt
+  const auto = Number((q as any)?.auto ?? 0)
+  if (typeof ing === 'string' && ing.trim()) {
+    const list = ing
+      .split(',')
+      .map((x: string) => x.trim())
+      .filter(Boolean)
+    if (list.length > 0) chatStore.setSelectedIngredients(Array.from(new Set(list)))
+  }
+  if (typeof prompt === 'string') chatStore.setDraft(prompt)
+  if (auto > 0) {
+    setTimeout(() => {
+      onSendMany(Math.min(3, Math.max(1, auto)), typeof prompt === 'string' ? prompt : null)
+    }, 50)
+  }
+})
 
 function onOpenRecipe(id: string): void {
   uni.navigateTo({ url: `/pages/recipeDetail?id=${encodeURIComponent(id)}` })

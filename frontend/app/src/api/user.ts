@@ -58,6 +58,24 @@ export async function loginWithEmail(body: EmailLoginRequest): Promise<AuthToken
   })
 }
 
+export interface UserProfileResponse {
+  id: string
+  email: string
+  nickname: string
+}
+
+export async function fetchMe(): Promise<UserProfileResponse> {
+  if (!apiConfig.baseUrl) {
+    await new Promise<void>((r) => setTimeout(r, 200))
+    return { id: 'mock_user', email: 'mock@local', nickname: 'Mock用户' }
+  }
+  return await request<UserProfileResponse>({
+    url: '/api/auth/me',
+    method: 'GET',
+    retry: 0,
+  })
+}
+
 export async function guestLogin(): Promise<AuthTokensResponse> {
   if (!apiConfig.baseUrl) {
     await new Promise<void>((r) => setTimeout(r, 250))

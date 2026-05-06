@@ -57,6 +57,7 @@ async function onSubmit(): Promise<void> {
     const tokens = await loginWithEmail(body)
     const userStore = useUserStore()
     userStore.setTokens(tokens)
+    await userStore.fetchProfile()
     uni.switchTab({ url: '/pages/home' })
   } finally {
     loading.value = false
@@ -70,6 +71,7 @@ async function onGuest(): Promise<void> {
     const tokens = await guestLogin()
     const userStore = useUserStore()
     userStore.setTokens(tokens)
+    await userStore.fetchProfile()
     uni.switchTab({ url: '/pages/home' })
   } finally {
     loading.value = false

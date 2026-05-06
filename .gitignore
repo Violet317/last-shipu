@@ -21,6 +21,18 @@ Thumbs.db
 .vscode/
 .idea/
 
+# === 前端环境变量 ===
+frontend/app/.env*
+
+# === 后端数据 & 日志 ===
+backend/data/
+
+# === AI 工具缓存 ===
+.alma/
+.claude/
+.trae/
+.alma-snapshots
+
 # === 项目特定 ===
 *.apk
 *.ipa

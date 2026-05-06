@@ -24,16 +24,12 @@ export async function pathToBase64WithMeta(path: string): Promise<Base64Result> 
     return { dataUrl: `data:image/jpeg;base64,${base64}`, bytes, mime: 'image/jpeg' }
   }
 
-  const res = await fetch(path)
-  const blob = await res.blob()
-  const dataUrl = await new Promise<string>((resolve, reject) => {
-    const reader = new FileReader()
-    reader.onload = () => resolve(String(reader.result))
-    reader.onerror = () => reject(new Error('read base64 failed'))
-    reader.readAsDataURL(blob)
-  })
-  const m = /^data:([^;]+);base64,/.exec(dataUrl)
-  return { dataUrl, bytes: blob.size, mime: m?.[1] ?? blob.type ?? '' }
+  // fallback: 用 uni.request 获取图片数据（App/H5 兼容）
+  const res = await uni.request({ url: path, responseType: 'arraybuffer' })
+  const arrayBuffer = res.data as ArrayBuffer
+  const bytes = arrayBuffer.byteLength
+  const base64 = uni.arrayBufferToBase64(arrayBuffer)
+  return { dataUrl: `data:image/jpeg;base64,${base64}`, bytes, mime: 'image/jpeg' }
 }
 
 export async function getFileSizeBytes(filePath: string): Promise<number> {
@@ -41,9 +37,9 @@ export async function getFileSizeBytes(filePath: string): Promise<number> {
     const info = await uni.getFileInfo({ filePath })
     return info.size
   } catch {
-    const res = await fetch(filePath)
-    const blob = await res.blob()
-    return blob.size
+    // fallback: 用 uni.request 获取
+    const res = await uni.request({ url: filePath, responseType: 'arraybuffer' })
+    return (res.data as ArrayBuffer)?.byteLength ?? 0
   }
 }
 

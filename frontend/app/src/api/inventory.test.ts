@@ -24,7 +24,7 @@ describe('inventory api', () => {
       nameEn: 'Celery',
       kcalPer100g: 16,
       unit: 'g',
-      thumbnailUrl: '/static/images/design/食材库页.png',
+      thumbnailUrl: '/static/images/design/ingredients.png',
     })
     expect(created.id).toBeTruthy()
 
@@ -34,7 +34,7 @@ describe('inventory api', () => {
       nameEn: 'Celery',
       kcalPer100g: 17,
       unit: 'g',
-      thumbnailUrl: '/static/images/design/食材库页.png',
+      thumbnailUrl: '/static/images/design/ingredients.png',
       sort: 5,
     })
     expect(updated.kcalPer100g).toBe(17)

@@ -29,6 +29,20 @@
       }
     },
     {
+      "path": "pages/pantryImport",
+      "style": {
+        "navigationBarTitleText": "入库",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/shoppingList",
+      "style": {
+        "navigationBarTitleText": "购物清单",
+        "navigationStyle": "custom"
+      }
+    },
+    {
       "path": "pages/recipeDetail",
       "style": {
         "navigationBarTitleText": "食谱详情",

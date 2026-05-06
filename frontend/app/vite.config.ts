@@ -10,4 +10,13 @@ const uni: UniPluginFactory =
 
 export default defineConfig({
   plugins: [uni()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:8787',
+        changeOrigin: true,
+        // 后端接口本身带 /api 前缀，不需要 rewrite
+      }
+    }
+  }
 })

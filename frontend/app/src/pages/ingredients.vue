@@ -1,8 +1,16 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
-import type { InventoryCategory, InventoryItem } from '@/api/inventory'
+import type { InventoryCategory } from '@/api/inventory'
+
+import type { FreshnessLevel } from '@/utils/expiry'
+
 import { useChatStore } from '@/stores/chat'
+
 import { useInventoryStore } from '@/stores/inventory'
+
+import { usePantryStore } from '@/stores/pantry'
+
+import { getDaysLeft, getFreshnessColor, getFreshnessLevel } from '@/utils/expiry'
 
 const active = ref<InventoryCategory>('veg')
 const input = ref<string>('')
@@ -11,9 +19,40 @@ const pendingDeleteIds = ref<string[]>([])
 
 const chatStore = useChatStore()
 const inventoryStore = useInventoryStore()
+const pantryStore = usePantryStore()
 
 const topHeightPx = ref<number>(260)
 const windowHeightPx = ref<number>(0)
+
+interface PantryBatch {
+
+  id: string
+
+  qty: number
+
+  daysLeft: number
+
+  level: FreshnessLevel
+
+  color: string
+
+}
+
+
+
+interface PantryRow {
+
+  inventoryId: string
+
+  nameZh: string
+
+  category: InventoryCategory
+
+  batches: PantryBatch[]
+
+}
+
+
 
 const categoryLabel = computed<string>(() => (active.value === 'veg' ? '蔬菜' : active.value === 'meat' ? '肉类' : '厨具'))
 
@@ -73,12 +112,139 @@ function emojiOf(name: string, category: InventoryCategory): string {
   return category === 'veg' ? '🥬' : category === 'meat' ? '🥩' : '🍳'
 }
 
-const filtered = computed<InventoryItem[]>(() => {
+const pantryRows = computed<PantryRow[]>(() => {
+
   const k = input.value.trim().toLowerCase()
-  const list = inventoryStore.byCategory(active.value)
-  if (!k) return list
-  return list.filter((x) => x.nameZh.includes(k) || x.nameEn.toLowerCase().includes(k))
+
+  const now = Date.now()
+
+  const rows = new Map<string, PantryRow>()
+
+
+
+  for (const p of pantryStore.items) {
+
+    const inv = inventoryStore.items.find((x) => x.id === p.inventoryId)
+
+    if (!inv) continue
+
+    if (inv.category !== active.value) continue
+
+    if (k && !inv.nameZh.includes(k) && !inv.nameEn.toLowerCase().includes(k)) continue
+
+
+
+    const daysLeft = getDaysLeft(Number(p.expiresAtMs), now)
+
+    const level = getFreshnessLevel(daysLeft)
+
+    const color = getFreshnessColor(level)
+
+
+
+    const batch: PantryBatch = {
+
+      id: p.id,
+
+      qty: p.qty || 1,
+
+      daysLeft,
+
+      level,
+
+      color,
+
+    }
+
+
+
+    const existing = rows.get(p.inventoryId)
+
+    if (existing) {
+
+      existing.batches.push(batch)
+
+    } else {
+
+      rows.set(p.inventoryId, {
+
+        inventoryId: p.inventoryId,
+
+        nameZh: inv.nameZh,
+
+        category: inv.category,
+
+        batches: [batch],
+
+      })
+
+    }
+
+  }
+
+
+
+  for (const row of rows.values()) {
+
+    row.batches.sort((a, b) => a.daysLeft - b.daysLeft)
+
+  }
+
+
+
+  return Array.from(rows.values()).sort((a, b) => {
+
+    const order = { expired: 0, soon: 1, fresh: 2 }
+
+    const aLevel = a.batches[0]?.level ?? 'fresh'
+
+    const bLevel = b.batches[0]?.level ?? 'fresh'
+
+    return order[aLevel] - order[bLevel]
+
+  })
+
 })
+
+
+
+function batchCardStyle(qty: number, color: string): Record<string, string> {
+
+  return {
+
+    borderColor: color,
+
+    backgroundColor: color + '12',
+
+  }
+
+}
+
+
+
+
+
+
+
+function isSelectedById(inventoryId: string): boolean {
+
+  const inv = inventoryStore.items.find((x) => x.id === inventoryId)
+
+  if (!inv) return false
+
+  return isSelected(inv)
+
+}
+
+
+
+function toggleById(inventoryId: string): void {
+
+  const inv = inventoryStore.items.find((x) => x.id === inventoryId)
+
+  if (inv) toggle(inv)
+
+}
 
 function isSelected(item: InventoryItem): boolean {
   if (item.category === 'tool') return chatStore.selectedTools.includes(item.nameZh)
@@ -160,6 +326,7 @@ async function confirmDelete(): Promise<void> {
     const ok = await inventoryStore.remove(id)
     if (!ok) continue
     if (item) unselectIfSelected(item)
+    if (item && item.category !== 'tool') await pantryStore.removeByInventoryId(item.id)
     okCount += 1
   }
   uni.showToast({ title: okCount > 0 ? '已删除' : '未删除', icon: 'none' })
@@ -223,8 +390,10 @@ async function measureTop(): Promise<void> {
 
 onMounted(async () => {
   await inventoryStore.fetch()
+  await pantryStore.fetch()
   await measureTop()
 })
+
 
 watch(
   () => [active.value, chatStore.selectedCount, deleteMode.value],
@@ -299,32 +468,81 @@ watch(
 
     <scroll-view class="content" scroll-y :style="contentHeightStyle">
       <view class="section-title">
-        <text class="section-title-text">{{ categoryLabel }}（点图标表示家里有）</text>
-        <text class="section-title-sub">{{ deleteMode ? '点选要删除的条目' : '可输入添加' }}</text>
+
+        <text class="section-title-text">{{ categoryLabel }}库存</text>
+
+        <text class="section-title-sub">红色=过期 黄色=快过期 绿色=新鲜</text>
+
       </view>
 
-      <view v-if="inventoryStore.loading" class="hint">
+
+
+      <view v-if="pantryStore.loading" class="hint">
+
         <text class="hint-text">加载中...</text>
-      </view>
-      <view v-else-if="inventoryStore.error" class="hint">
-        <text class="hint-text">{{ inventoryStore.error }}</text>
-      </view>
-      <view v-else-if="filtered.length === 0" class="hint">
-        <text class="hint-text">暂无条目，试试上方输入添加</text>
+
       </view>
 
-      <view v-else class="grid">
-        <view
-          v-for="it in filtered"
-          :key="it.id"
-          class="icon-item"
-          :class="deleteMode ? (pendingDeleteIds.includes(it.id) ? 'icon-item--del' : '') : (isSelected(it) ? 'icon-item--on' : '')"
-          hover-class="icon-item--hover"
-          @click="deleteMode ? togglePendingDelete(it.id) : toggle(it)"
-        >
-          <text class="emoji">{{ emojiOf(it.nameZh, it.category) }}</text>
-          <text class="text">{{ it.nameZh }}</text>
+      <view v-else-if="pantryStore.error" class="hint">
+
+        <text class="hint-text">{{ pantryStore.error }}</text>
+
+      </view>
+
+      <view v-else-if="pantryRows.length === 0" class="hint">
+
+        <text class="hint-text">暂无库存，试试小票入库</text>
+
+      </view>
+
+
+
+      <view v-else class="pantry-list">
+
+        <view v-for="row in pantryRows" :key="row.inventoryId" class="pantry-row" :class="deleteMode ? (pendingDeleteIds.includes(row.inventoryId) ? 'pantry-row--del' : '') : (isSelectedById(row.inventoryId) ? 'pantry-row--on' : '')"" @click="deleteMode ? togglePendingDelete(row.inventoryId) : toggleById(row.inventoryId)">
+
+          <view class="row-header">
+
+            <text class="row-emoji">{{ emojiOf(row.nameZh, row.category) }}</text>
+
+            <text class="row-name">{{ row.nameZh }}</text>
+
+          </view>
+
+          <scroll-view class="row-scroll" scroll-x>
+
+            <view class="row-batches">
+
+              <view
+
+                v-for="batch in row.batches"
+
+                :key="batch.id"
+
+                class="batch-card"
+
+                :class="[`fresh-${batch.level}`]"
+
+                :style="batchCardStyle(batch.qty, batch.color)"
+
+              >
+
+                <text class="batch-qty">{{ batch.qty >= 1000 ? (batch.qty / 1000).toFixed(1) + 'kg' : batch.qty + 'g' }}</text>
+
+                <text class="batch-days" :style="{ color: batch.color }">
+
+                  {{ batch.daysLeft < 0 ? '已过期' : batch.daysLeft === 0 ? '今天过期' : batch.daysLeft + '天' }}
+
+                </text>
+
+              </view>
+
+            </view>
+
+          </scroll-view>
+
         </view>
+
       </view>
 
       <view class="spacer" />
@@ -599,59 +817,111 @@ watch(
   color: var(--color-on-surface-variant);
 }
 
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14rpx;
+.spacer {
+
+  height: 40rpx;
+
 }
 
-.icon-item {
-  height: 56rpx;
-  padding: 0 16rpx 0 12rpx;
-  border-radius: var(--radius-full);
-  background-color: var(--color-surface);
-  border-width: 1rpx;
-  border-style: solid;
-  border-color: rgba(var(--rgb-black), 0.06);
-  display: flex;
-  align-items: center;
-  gap: 10rpx;
+
+
+.fresh-expired {
+
+  background-color: rgba(229, 57, 53, 0.06);
+
 }
 
-.icon-item--hover {
-  background-color: var(--color-surface-container-low);
+
+
+.fresh-soon {
+
+  background-color: rgba(255, 179, 0, 0.06);
+
 }
 
-.icon-item--on {
-  background-color: rgba(var(--rgb-primary-container), 0.24);
-  border-color: rgba(var(--rgb-primary-container), 0.4);
+
+
+.fresh-fresh {
+
+  background-color: rgba(76, 175, 80, 0.06);
+
 }
 
-.icon-item--del {
-  background-color: rgba(var(--rgb-danger), 0.12);
+
+
+.pantry-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.pantry-row {
+  padding: 16rpx;
+  border-radius: var(--radius-xl);
+  background-color: var(--color-surface);
+  border-width: 1rpx;
+  border-style: solid;
+  border-color: rgba(var(--rgb-black), 0.06);
+}
+
+.row-header {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-bottom: 12rpx;
+}
+
+.row-emoji {
+  font-size: 36rpx;
+}
+
+.row-name {
+  font-size: 28rpx;
+  font-weight: 900;
+  color: var(--color-on-surface);
+}
+
+.row-scroll {
+  width: 100%;
+}
+
+.row-batches {
+  display: flex;
+  gap: 12rpx;
+  padding: 4rpx 0;
+}
+
+.batch-card {
+  min-width: 140rpx;
+  padding: 14rpx 16rpx;
+  border-radius: var(--radius-xl);
+  border-width: 2rpx;
+  border-style: solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6rpx;
+}
+
+.batch-qty {
+  font-size: 24rpx;
+  font-weight: 900;
+  color: var(--color-on-surface);
+}
+
+
+.pantry-row--on {
+  box-shadow: 0 0 0 3rpx var(--color-primary);
+}
+
+.pantry-row--del {
+  background-color: rgba(var(--rgb-danger), 0.08);
   border-color: rgba(var(--rgb-danger), 0.24);
 }
-
-.icon-item--del .text {
-  color: var(--color-danger);
-}
-
-.emoji {
-  font-size: 24rpx;
-}
-
-.text {
-  font-size: 24rpx;
-  font-weight: 900;
-  color: var(--color-on-surface);
-}
-
-.icon-item--on .text {
-  color: var(--color-primary);
-}
-
-.spacer {
-  height: 40rpx;
-}
+.batch-days {
+  font-size: 20rpx;
+  font-weight: 800;
+}
+
 </style>
 

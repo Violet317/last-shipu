@@ -1,0 +1,126 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String         @id
+  email       String         @unique
+  nickname    String
+  createdAtMs BigInt
+
+  refreshTokens RefreshToken[]
+  inventoryItems InventoryItem[]
+  pantryItems    PantryItem[]
+  shoppingItems  ShoppingItem[]
+  recipes        Recipe[]
+  shortcuts      ShortcutTemplate[]
+}
+
+model AuthCode {
+  id          String @id
+  email       String
+  codeHash    String
+  expiresAtMs BigInt
+  createdAtMs BigInt
+
+  @@index([email, expiresAtMs])
+}
+
+model RefreshToken {
+  id          String @id
+  userId      String
+  tokenHash   String @unique
+  expiresAtMs BigInt
+  createdAtMs BigInt
+  revokedAtMs BigInt?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, expiresAtMs])
+}
+
+model InventoryItem {
+  id          String @id
+  userId      String?
+  category    String
+  nameZh      String
+  nameEn      String
+  kcalPer100g Int
+  unit        String
+  thumbnailUrl String
+  sort        Int
+  updatedAtMs BigInt
+
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+  pantryItems PantryItem[]
+
+  @@index([userId, category, sort])
+  @@unique([userId, nameZh])
+}
+
+model PantryItem {
+  id          String @id
+  userId      String
+  inventoryId String
+  storage     String
+  purchasedAtMs BigInt
+  expiresAtMs BigInt
+  source      String
+  qty         Int?
+  updatedAtMs BigInt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  inventory InventoryItem @relation(fields: [inventoryId], references: [id], onDelete: Cascade)
+
+  @@index([userId, expiresAtMs])
+  @@index([inventoryId])
+}
+
+model ShoppingItem {
+  id          String @id
+  userId      String
+  name        String
+  qty         Int?
+  checked     Boolean
+  updatedAtMs BigInt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, checked, updatedAtMs])
+}
+
+model Recipe {
+  id            String @id
+  userId        String
+  title         String
+  coverUrl      String?
+  tagsJson      String
+  kcal          Int
+  durationMinutes Int
+  stepsJson     String
+  sourceIngredientsJson String
+  createdAtMs   BigInt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAtMs])
+}
+
+model ShortcutTemplate {
+  id          String @id
+  userId      String?
+  title       String
+  prompt      String
+  sort        Int
+  enabled     Boolean
+  updatedAtMs BigInt
+
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, sort])
+}

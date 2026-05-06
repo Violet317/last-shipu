@@ -4,17 +4,46 @@ import { getDailyFeatured, type DailyFeaturedData, type DailyFeaturedItem } from
 import { useRecipeDetailsStore } from '@/stores/recipeDetails'
 import { useRecipeStore } from '@/stores/recipe'
 import { useUserStore } from '@/stores/user'
+import { useInventoryStore } from '@/stores/inventory'
+import { usePantryStore } from '@/stores/pantry'
+import { getDaysLeft, getFreshnessColor, getFreshnessLevel } from '@/utils/expiry'
 
 const query = ref<string>('')
 const recipeStore = useRecipeStore()
 const recipeDetailsStore = useRecipeDetailsStore()
 const userStore = useUserStore()
+const inventoryStore = useInventoryStore()
+const pantryStore = usePantryStore()
 
 const avatarUrl = computed<string>(() => userStore.profile?.avatarUrl ?? '')
 const avatarLabel = computed<string>(() => (userStore.profile?.nickname?.trim() ? userStore.profile.nickname.trim().slice(0, 1) : '我'))
 
 function onAskAi(): void {
   uni.switchTab({ url: '/pages/aiCreate' })
+}
+
+function onOpenShoppingList(): void {
+  uni.navigateTo({ url: '/pages/shoppingList' })
+}
+
+function onRecommend(names: string[]): void {
+  const prompt = `基于这些临期食材，给我 3 个快手做法，每个都要：用料清单、步骤、热量估算、可替代食材。临期优先：${names.join('、')}`
+  uni.switchTab({ url: `/pages/aiCreate?ingredients=${encodeURIComponent(names.join(','))}&prompt=${encodeURIComponent(prompt)}&auto=3` })
+}
+
+async function onConsume(pantryId: string): Promise<void> {
+  const res = await new Promise<UniApp.ShowModalRes>((resolve) => {
+    uni.showModal({
+      title: '确认消耗',
+      content: '确认已消耗/丢弃该食材库存记录？',
+      confirmText: '确认',
+      cancelText: '取消',
+      success: (r) => resolve(r),
+      fail: () => resolve({ confirm: false, cancel: true } as UniApp.ShowModalRes),
+    })
+  })
+  if (!res.confirm) return
+  await pantryStore.remove(pantryId)
 }
 
 function onOpenProfile(): void {
@@ -118,7 +147,28 @@ async function fetchDaily(): Promise<void> {
   }
 }
 
-onMounted(fetchDaily)
+const expiring = computed(() => {
+  const invMap = new Map(inventoryStore.items.map((x) => [x.id, x]))
+  const now = Date.now()
+  return pantryStore.items
+    .map((p) => {
+      const inv = invMap.get(p.inventoryId)
+      const nameZh = inv?.nameZh ?? '未知食材'
+      const daysLeft = getDaysLeft(p.expiresAtMs, now)
+      const level = getFreshnessLevel(daysLeft)
+      return { pantryId: p.id, inventoryId: p.inventoryId, nameZh, daysLeft, level, color: getFreshnessColor(level) }
+    })
+    .filter((x) => x.level !== 'fresh')
+    .slice()
+    .sort((a, b) => a.daysLeft - b.daysLeft)
+    .slice(0, 3)
+})
+
+onMounted(async () => {
+  await fetchDaily()
+  await inventoryStore.fetch()
+  await pantryStore.fetch()
+})
 </script>
 
 <template>
@@ -152,6 +202,27 @@ onMounted(fetchDaily)
         </view>
         <input v-model="query" class="search-input" placeholder="我有三文鱼、牛油果..." />
         <button class="search-btn" @click="onAskAi">询问AI</button>
+      </view>
+
+      <view class="card shadow-editorial">
+        <view class="card-head">
+          <text class="card-title font-headline">临期预警</text>
+          <button class="link" @click="onOpenShoppingList">购物清单</button>
+        </view>
+        <view v-if="expiring.length === 0" class="empty">
+          <text class="empty-text">暂无临期食材</text>
+        </view>
+        <view v-else class="expiring">
+          <view v-for="x in expiring" :key="x.pantryId" class="exp-row">
+            <view class="dot" :style="{ backgroundColor: x.color }" />
+            <view class="exp-main">
+              <text class="exp-name">{{ x.nameZh }}</text>
+              <text class="exp-sub">{{ x.daysLeft < 0 ? '已过期' : `还有 ${x.daysLeft} 天` }}</text>
+            </view>
+            <button class="btn" @click="onRecommend([x.nameZh])">推荐做法</button>
+            <button class="btn ghost" @click="onConsume(x.pantryId)">一键消耗</button>
+          </view>
+        </view>
       </view>
 
       <view class="card shadow-editorial" @click="onOpenRecord">
@@ -449,6 +520,82 @@ onMounted(fetchDaily)
 .card-title {
   font-size: var(--fs-16);
   font-weight: 700;
+}
+
+.link {
+  background-color: transparent;
+  padding: 0;
+  color: var(--color-primary);
+  font-size: var(--fs-12);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.empty {
+  padding: 22rpx 0;
+}
+
+.empty-text {
+  color: var(--color-on-surface-variant);
+  font-size: var(--fs-12);
+  font-weight: 700;
+}
+
+.expiring {
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+}
+
+.exp-row {
+  display: flex;
+  align-items: center;
+  gap: 14rpx;
+  padding: 18rpx 18rpx;
+  border-radius: 22rpx;
+  background-color: rgba(var(--rgb-black), 0.04);
+}
+
+.dot {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: var(--radius-full);
+}
+
+.exp-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.exp-name {
+  display: block;
+  font-size: var(--fs-14);
+  font-weight: 900;
+  color: var(--color-on-surface);
+}
+
+.exp-sub {
+  display: block;
+  margin-top: 4rpx;
+  font-size: var(--fs-12);
+  font-weight: 700;
+  color: var(--color-on-surface-variant);
+}
+
+.btn {
+  height: 60rpx;
+  padding: 0 18rpx;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  font-size: var(--fs-12);
+  font-weight: 900;
+  line-height: 60rpx;
+}
+
+.btn.ghost {
+  background-color: rgba(var(--rgb-black), 0.06);
+  color: var(--color-on-surface);
 }
 
 .badge {

@@ -25,6 +25,7 @@ export interface UserActions {
   setTokens(tokens: AuthTokens): void
   clearAuth(): void
   setProfile(profile: UserProfile): void
+  fetchProfile(): Promise<void>
 }
 
 type UserStoreOptions = Omit<DefineStoreOptions<'user', UserState, UserGetters, UserActions>, 'id'>
@@ -47,6 +48,19 @@ const userStoreOptions = {
     },
     setProfile(profile: UserProfile) {
       this.profile = profile
+    },
+    async fetchProfile() {
+      const { fetchMe } = await import('@/api/user')
+      try {
+        const data = await fetchMe()
+        this.profile = {
+          id: data.id,
+          nickname: data.nickname,
+          avatarUrl: '',
+        }
+      } catch {
+        // 静默失败，不阻断流程
+      }
     },
   },
   persist: {

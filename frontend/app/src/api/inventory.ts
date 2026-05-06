@@ -35,9 +35,9 @@ function seedIfEmpty(): InventoryItem[] {
   const existing = getJson<InventoryItem[]>(STORAGE_KEY, [])
   if (existing.length > 0) return existing
 
-  const vegThumb = '/static/images/design/食材库页.png'
-  const meatThumb = '/static/images/design/首页.png'
-  const toolThumb = '/static/images/design/扩展页.png'
+  const vegThumb = '/static/images/design/ingredients.png'
+  const meatThumb = '/static/images/design/home.png'
+  const toolThumb = '/static/images/design/extra.png'
 
   const veg: Array<Omit<InventoryItem, 'id' | 'updatedAtMs'>> = [
     { category: 'veg', nameZh: '土豆', nameEn: 'Potato', kcalPer100g: 77, unit: 'g', thumbnailUrl: vegThumb, sort: 10 },

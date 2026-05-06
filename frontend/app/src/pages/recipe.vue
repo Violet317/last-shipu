@@ -65,17 +65,7 @@ async function pickImage(): Promise<void> {
       sizeBytes,
       name: `recipe.${ext === 'png' ? 'png' : 'jpg'}`,
       type: ext === 'png' ? 'image/png' : 'image/jpeg',
-      file: typeof File !== 'undefined'
-        ? await (async () => {
-            try {
-              const r = await fetch(path)
-              const blob = await r.blob()
-              return new File([blob], `recipe.${ext === 'png' ? 'png' : 'jpg'}`, { type: blob.type || (ext === 'png' ? 'image/png' : 'image/jpeg') })
-            } catch {
-              return undefined
-            }
-          })()
-        : undefined,
+      file: undefined,
     })
   } catch {
     store.setDraft('imageFile', { path })

@@ -189,7 +189,12 @@ export async function request<TResponse, TBody = unknown>(options: RequestOption
       const isLast = attempt === retry
       if (isLast) {
         if (e instanceof ApiError) {
-          uni.showToast({ title: e.message, icon: 'none' })
+          // 特殊处理429错误
+          if (e.statusCode === 429) {
+            uni.showToast({ title: '请求太频繁，请稍后再试', icon: 'none' })
+          } else {
+            uni.showToast({ title: e.message, icon: 'none' })
+          }
           throw e
         }
         uni.showToast({ title: '网络异常，请稍后再试', icon: 'none' })
